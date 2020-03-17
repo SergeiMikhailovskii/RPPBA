@@ -26,7 +26,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         passwordEditText = findViewById(R.id.password_edit_text);
         singInButton = findViewById(R.id.sign_in_button);
 
-        buttonOnClick();
+        singInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO authorization
+            }
+        });
     }
 
     @Override
@@ -48,14 +53,5 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     public void showLoadingIndicator(boolean value) {
 
     }
-
-    private void buttonOnClick (){
-        singInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO authorization
-            }
-        });
-    }
-
+    
 }

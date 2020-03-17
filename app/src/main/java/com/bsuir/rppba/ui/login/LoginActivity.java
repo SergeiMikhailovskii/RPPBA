@@ -15,7 +15,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     private LoginPresenter presenter = new LoginPresenter();
     private EditText loginEditText;
     private EditText passwordEditText;
-    private Button singInButton;
+    private Button signInButton;
     private String login;
     private String password;
 
@@ -27,18 +27,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
         loginEditText = findViewById(R.id.login_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
-        singInButton = findViewById(R.id.sign_in_button);
+        signInButton = findViewById(R.id.sign_in_button);
 
         login = loginEditText.getText().toString().trim();
         Log.i("Login", login);
         password = passwordEditText.getText().toString().trim();
         Log.i("Password", password);
 
-        singInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO authorization
-            }
+        signInButton.setOnClickListener(v -> {
+            //TODO authorization
         });
     }
 

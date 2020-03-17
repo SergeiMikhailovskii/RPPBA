@@ -1,46 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.login.LoginActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="57dp" />
 
     <ImageView
         android:id="@+id/car_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="515dp"
         android:src="@drawable/car_1"
-        android:layout_marginTop="62dp"
-        android:layout_marginLeft="113dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sign_in_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/login_edit_text"
-        android:hint="@string/login"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="57dp"
-        android:layout_marginTop="117dp"/>
+        android:layout_marginTop="330dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="356dp"
+        android:hint="@string/login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/password_edit_text"
-        android:hint="@string/password"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="57dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="306dp"
+        android:hint="@string/password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/sign_in_button"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="21dp"
+        android:background="@color/colorBlue"
         android:text="@string/sign_in"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        android:background="@color/colorBlue"
-        android:layout_width="300dp"
-        android:layout_height="65dp"
-        android:layout_marginLeft="57dp"
-        android:layout_marginTop="100dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+    
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

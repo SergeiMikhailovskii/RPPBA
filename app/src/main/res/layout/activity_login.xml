@@ -39,14 +39,8 @@
         android:id="@+id/car_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginBottom="515dp"
+        android:layout_marginTop="65dp"
         android:src="@drawable/car_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sign_in_button"
-        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,40 +50,35 @@
         android:id="@+id/login_edit_text"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="330dp"
-        android:layout_marginBottom="356dp"
+        android:layout_marginTop="230dp"
         android:hint="@string/login"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/car_image_view" />
 
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:layout_marginBottom="306dp"
+        android:layout_marginTop="80dp"
         android:hint="@string/password"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/login_edit_text" />
 
     <Button
         android:id="@+id/sign_in_button"
         android:layout_width="300dp"
         android:layout_height="65dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginBottom="21dp"
         android:background="@color/colorBlue"
         android:text="@string/sign_in"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="21dp"
         app:layout_constraintEnd_toEndOf="@id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+         />
 
 
 

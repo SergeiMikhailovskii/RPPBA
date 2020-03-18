@@ -50,11 +50,11 @@
         android:id="@+id/login_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="110dp"
         android:hint="@string/login"
         app:layout_constraintEnd_toEndOf="@id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@id/car_image_view" />
+        app:layout_constraintTop_toBottomOf="@id/car_image_view" />
 
     <EditText
         android:id="@+id/password_edit_text"

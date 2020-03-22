@@ -1,5 +1,6 @@
 package com.bsuir.rppba.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +34,10 @@ public class MaterialsAdapter extends RecyclerView.Adapter<MaterialsAdapter.View
         return new ViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.amount.setText(materials.get(position).getAmount());
+        holder.amount.setText(materials.get(position).getAmount()+"");
         holder.subName.setText(materials.get(position).getSubName());
         holder.name.setText(materials.get(position).getName());
         Glide.with(LogisticsApp.getAppContext()).load(materials.get(position).getIcon()).into(holder.icon);

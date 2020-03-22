@@ -42,6 +42,8 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Mat
         adapter = new MaterialsAdapter(this);
         materials.setAdapter(adapter);
 
+        presenter.loadMaterialsList();
+
         return view;
     }
 

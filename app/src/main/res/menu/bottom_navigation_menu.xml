@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/materials"
+        android:id="@+id/stockItems"
         android:icon="@drawable/materials"
-        android:title="@string/materials" />
+        android:title="@string/stockItems" />
 
     <item
         android:id="@+id/products"

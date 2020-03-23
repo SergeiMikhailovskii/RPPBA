@@ -2,7 +2,7 @@ package com.bsuir.rppba.data.entity;
 
 import java.util.List;
 
-public class Material extends Entity {
+public class StockItem extends Entity {
 
     private String icon;
     private String name;
@@ -10,10 +10,10 @@ public class Material extends Entity {
     private int amount;
     private List<Place> places;
 
-    public Material() {
+    public StockItem() {
     }
 
-    public Material(String icon, String name, String subName, int amount, List<Place> places) {
+    public StockItem(String icon, String name, String subName, int amount, List<Place> places) {
         this.icon = icon;
         this.name = name;
         this.subName = subName;

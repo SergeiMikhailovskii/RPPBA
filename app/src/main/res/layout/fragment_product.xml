@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.stockItems.MaterialsFragment">
+    tools:context=".ui.stocks.ProductFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/materials_list"
+            android:id="@+id/products_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

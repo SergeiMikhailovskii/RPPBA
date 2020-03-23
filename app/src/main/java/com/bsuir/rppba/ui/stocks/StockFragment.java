@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.materials;
+package com.bsuir.rppba.ui.stocks;
 
 import android.os.Bundle;
 
@@ -30,7 +30,7 @@ public class StockFragment extends Fragment implements StockContract.MaterialsVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_materials, container, false);
+        View view = inflater.inflate(R.layout.fragment_stocks, container, false);
         presenter.attachView(this);
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);

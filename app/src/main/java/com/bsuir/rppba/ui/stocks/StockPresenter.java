@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.materials;
+package com.bsuir.rppba.ui.stocks;
 
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.BasePresenter;

@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.bsuir.rppba.R;
-import com.bsuir.rppba.ui.materials.StockFragment;
+import com.bsuir.rppba.ui.stocks.StockFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

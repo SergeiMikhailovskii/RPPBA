@@ -21,9 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class ProductFragment extends Fragment implements StockContract.MaterialsView, StockAdapter.OnItemClickListener {
+public class ProductFragment extends Fragment implements ProductContract.ProductView, StockAdapter.OnItemClickListener {
 
-    private StockPresenter presenter = new StockPresenter();
+    private ProductContract.ProductsPresenter presenter = new ProductPresenter();
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView products;
     private StockAdapter adapter;
@@ -34,7 +34,7 @@ public class ProductFragment extends Fragment implements StockContract.Materials
         View view = inflater.inflate(R.layout.fragment_product, container, false);
         presenter.attachView(this);
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
-        swipeRefreshLayout.setOnRefreshListener(() -> presenter.loadMaterialsList());
+        swipeRefreshLayout.setOnRefreshListener(() -> presenter.loadProductsList());
 
         products = view.findViewById(R.id.products_list);
         products.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -42,10 +42,11 @@ public class ProductFragment extends Fragment implements StockContract.Materials
         products.setAdapter(adapter);
 
 
-        presenter.loadMaterialsList();
+        presenter.loadProductsList();
 
         return view;
     }
+
 
     @Override
     public void onItemClicked(int position, StockItem materials) {
@@ -54,22 +55,22 @@ public class ProductFragment extends Fragment implements StockContract.Materials
     }
 
     @Override
-    public void onMaterialsLoaded(List<StockItem> stockItems) {
-
+    public void onProductsLoaded(List<StockItem> stockItems) {
+        adapter.setData(stockItems);
     }
 
     @Override
-    public void onMaterialsFailed() {
+    public void onProductsFailed() {
         Toast.makeText(getContext(), "Loading failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showEmptyState(boolean value) {
-        swipeRefreshLayout.setRefreshing(value);
+
     }
 
     @Override
     public void showLoadingIndicator(boolean value) {
-
+        swipeRefreshLayout.setRefreshing(value);
     }
 }

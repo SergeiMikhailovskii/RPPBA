@@ -49,6 +49,7 @@ public class StockFragment extends Fragment implements StockContract.MaterialsVi
 
     @Override
     public void onMaterialsLoaded(List<StockItem> stockItems) {
+
         adapter.setData(stockItems);
     }
 

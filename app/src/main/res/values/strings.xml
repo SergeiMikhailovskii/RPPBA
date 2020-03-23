@@ -3,5 +3,9 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign in</string>
+    <string name="materials">Materials</string>
+    <string name="products">Products</string>
+    <string name="bills">Bills</string>
+    <string name="manufacture">Manufacture</string>
 
 </resources>

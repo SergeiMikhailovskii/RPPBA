@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.ui.materials.MaterialFragment;
+import com.bsuir.rppba.ui.products.ProductFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
                     menuItem.setChecked(true);
                     fragment = new MaterialFragment();
                     break;
+                case R.id.products:
+                    menuItem.setChecked(true);
+                    fragment = new ProductFragment();
                 default:
                     break;
             }

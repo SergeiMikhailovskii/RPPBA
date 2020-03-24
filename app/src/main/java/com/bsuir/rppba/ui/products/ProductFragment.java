@@ -39,6 +39,7 @@ public class ProductFragment extends Fragment implements ProductContract.Product
         products = view.findViewById(R.id.products_list);
         products.setLayoutManager(new LinearLayoutManager(getContext()));
         products.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
+        adapter = new StockAdapter(this);
         products.setAdapter(adapter);
 
 

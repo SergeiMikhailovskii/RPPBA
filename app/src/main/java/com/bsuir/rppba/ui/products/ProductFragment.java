@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.stocks;
+package com.bsuir.rppba.ui.products;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

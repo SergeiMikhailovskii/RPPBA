@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.stocks;
+package com.bsuir.rppba.ui.products;
 
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.MvpPresenter;

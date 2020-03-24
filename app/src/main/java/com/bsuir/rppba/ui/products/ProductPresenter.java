@@ -1,7 +1,8 @@
-package com.bsuir.rppba.ui.stocks;
+package com.bsuir.rppba.ui.products;
 
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.BasePresenter;
+import com.bsuir.rppba.ui.products.ProductContract;
 
 import java.util.ArrayList;
 import java.util.List;

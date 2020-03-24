@@ -30,21 +30,22 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.stocks_element, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_element, parent, false);
         return new ViewHolder(itemView);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.amount.setText(stockItems.get(position).getAmount()+"");
-        holder.subName.setText(stockItems.get(position).getSubName());
-        holder.name.setText(stockItems.get(position).getName());
-        Glide.with(LogisticsApp.getAppContext()).load(stockItems.get(position).getIcon()).into(holder.icon);
+        StockItem stockItem = stockItems.get(position);
+        holder.amount.setText(stockItem.getAmount()+"");
+        holder.subName.setText(stockItem.getSubName());
+        holder.name.setText(stockItem.getName());
+        Glide.with(LogisticsApp.getAppContext()).load(stockItem.getIcon()).into(holder.icon);
 
         holder.itemView.setOnClickListener(v -> {
             if (holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
-                onItemClickListener.onItemClicked(holder.getAdapterPosition(), stockItems.get(position));
+                onItemClickListener.onItemClicked(holder.getAdapterPosition(), stockItem);
             }
         });
     }

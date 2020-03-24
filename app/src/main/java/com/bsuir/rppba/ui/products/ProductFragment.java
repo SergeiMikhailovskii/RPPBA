@@ -49,14 +49,14 @@ public class ProductFragment extends Fragment implements ProductContract.Product
 
 
     @Override
-    public void onItemClicked(int position, StockItem materials) {
+    public void onItemClicked(int position, StockItem productsList) {
         //TODO replace with Intent
         Toast.makeText(getContext(), "Clicked!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onProductsLoaded(List<StockItem> stockItems) {
-        adapter.setData(stockItems);
+    public void onProductsLoaded(List<StockItem> productsList) {
+        adapter.setData(productsList);
     }
 
     @Override

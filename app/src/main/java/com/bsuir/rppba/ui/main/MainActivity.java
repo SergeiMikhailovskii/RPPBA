@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.bsuir.rppba.R;
-import com.bsuir.rppba.ui.stocks.StockFragment;
+import com.bsuir.rppba.ui.materials.MaterialFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
 
         FragmentTransaction startTransaction = getSupportFragmentManager().beginTransaction();
-        StockFragment stockFragment = new StockFragment();
-        startTransaction.add(R.id.fragment_layout, stockFragment);
+        MaterialFragment materialFragment = new MaterialFragment();
+        startTransaction.add(R.id.fragment_layout, materialFragment);
         startTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         startTransaction.commit();
 
@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
             switch (menuItem.getItemId()) {
-                case R.id.stockItems:
+                case R.id.materials:
                     menuItem.setChecked(true);
-                    fragment = new StockFragment();
+                    fragment = new MaterialFragment();
                     break;
                 default:
                     break;

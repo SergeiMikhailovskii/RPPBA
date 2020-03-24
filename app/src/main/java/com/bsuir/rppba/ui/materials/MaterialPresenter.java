@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.stocks;
+package com.bsuir.rppba.ui.materials;
 
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.BasePresenter;
@@ -6,7 +6,7 @@ import com.bsuir.rppba.ui.base.BasePresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StockPresenter extends BasePresenter<StockContract.MaterialsView> implements StockContract.MaterialsPresenter {
+public class MaterialPresenter extends BasePresenter<MaterialContract.MaterialsView> implements MaterialContract.MaterialsPresenter {
 
     @Override
     public void loadMaterialsList() {

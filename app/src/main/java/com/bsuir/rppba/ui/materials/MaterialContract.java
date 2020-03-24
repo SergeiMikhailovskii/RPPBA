@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.stocks;
+package com.bsuir.rppba.ui.materials;
 
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.MvpPresenter;
@@ -6,7 +6,7 @@ import com.bsuir.rppba.ui.base.MvpView;
 
 import java.util.List;
 
-public interface StockContract {
+public interface MaterialContract {
 
     interface MaterialsView extends MvpView {
 

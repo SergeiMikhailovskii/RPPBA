@@ -10,7 +10,7 @@ public interface ProductContract {
 
     interface ProductView extends MvpView {
 
-        void onProductsLoaded(List<StockItem> stockItems);
+        void onProductsLoaded(List<StockItem> productsList);
 
         void onProductsFailed();
 

@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.stocks;
+package com.bsuir.rppba.ui.materials;
 
 import android.os.Bundle;
 
@@ -20,9 +20,9 @@ import com.bsuir.rppba.ui.adapter.StockAdapter;
 import java.util.List;
 import java.util.Objects;
 
-public class StockFragment extends Fragment implements StockContract.MaterialsView, StockAdapter.OnItemClickListener {
+public class MaterialFragment extends Fragment implements MaterialContract.MaterialsView, StockAdapter.OnItemClickListener {
 
-    private StockPresenter presenter = new StockPresenter();
+    private MaterialPresenter presenter = new MaterialPresenter();
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView materials;
     private StockAdapter adapter;
@@ -30,7 +30,7 @@ public class StockFragment extends Fragment implements StockContract.MaterialsVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_stocks, container, false);
+        View view = inflater.inflate(R.layout.fragment_materials, container, false);
         presenter.attachView(this);
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);

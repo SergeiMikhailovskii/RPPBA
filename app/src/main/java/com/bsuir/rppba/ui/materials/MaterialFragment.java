@@ -14,18 +14,18 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bsuir.rppba.R;
-import com.bsuir.rppba.data.entity.Material;
-import com.bsuir.rppba.ui.adapter.MaterialsAdapter;
+import com.bsuir.rppba.data.entity.StockItem;
+import com.bsuir.rppba.ui.adapter.StockAdapter;
 
 import java.util.List;
 import java.util.Objects;
 
-public class MaterialsFragment extends Fragment implements MaterialsContract.MaterialsView, MaterialsAdapter.OnItemClickListener {
+public class MaterialFragment extends Fragment implements MaterialContract.MaterialsView, StockAdapter.OnItemClickListener {
 
-    private MaterialsPresenter presenter = new MaterialsPresenter();
+    private MaterialPresenter presenter = new MaterialPresenter();
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView materials;
-    private MaterialsAdapter adapter;
+    private StockAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +39,7 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Mat
         materials = view.findViewById(R.id.materials_list);
         materials.setLayoutManager(new LinearLayoutManager(getContext()));
         materials.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
-        adapter = new MaterialsAdapter(this);
+        adapter = new StockAdapter(this);
         materials.setAdapter(adapter);
 
         presenter.loadMaterialsList();
@@ -48,8 +48,9 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Mat
     }
 
     @Override
-    public void onMaterialsLoaded(List<Material> materials) {
-        adapter.setData(materials);
+    public void onMaterialsLoaded(List<StockItem> stockItems) {
+
+        adapter.setData(stockItems);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class MaterialsFragment extends Fragment implements MaterialsContract.Mat
     }
 
     @Override
-    public void onItemClicked(int position, Material materials) {
+    public void onItemClicked(int position, StockItem materials) {
         //TODO replace with Intent
         Toast.makeText(getContext(), "Clicked!", Toast.LENGTH_SHORT).show();
     }

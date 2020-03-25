@@ -12,46 +12,47 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bsuir.rppba.LogisticsApp;
 import com.bsuir.rppba.R;
-import com.bsuir.rppba.data.entity.Material;
+import com.bsuir.rppba.data.entity.StockItem;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaterialsAdapter extends RecyclerView.Adapter<MaterialsAdapter.ViewHolder> {
+public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
 
-    private List<Material> materials = new ArrayList<>();
+    private List<StockItem> stockItems = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
-    public MaterialsAdapter(OnItemClickListener onItemClickListener) {
+    public StockAdapter(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.materials_element, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_element, parent, false);
         return new ViewHolder(itemView);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.amount.setText(materials.get(position).getAmount()+"");
-        holder.subName.setText(materials.get(position).getSubName());
-        holder.name.setText(materials.get(position).getName());
-        Glide.with(LogisticsApp.getAppContext()).load(materials.get(position).getIcon()).into(holder.icon);
+        StockItem stockItem = stockItems.get(position);
+        holder.amount.setText(stockItem.getAmount()+"");
+        holder.subName.setText(stockItem.getSubName());
+        holder.name.setText(stockItem.getName());
+        Glide.with(LogisticsApp.getAppContext()).load(stockItem.getIcon()).into(holder.icon);
 
         holder.itemView.setOnClickListener(v -> {
             if (holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
-                onItemClickListener.onItemClicked(holder.getAdapterPosition(), materials.get(position));
+                onItemClickListener.onItemClicked(holder.getAdapterPosition(), stockItem);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return materials.size();
+        return stockItems.size();
     }
 
     @Override
@@ -59,15 +60,15 @@ public class MaterialsAdapter extends RecyclerView.Adapter<MaterialsAdapter.View
         return position;
     }
 
-    public void setData(List<Material> materials) {
-        this.materials.clear();
-        this.materials.addAll(materials);
+    public void setData(List<StockItem> stockItems) {
+        this.stockItems.clear();
+        this.stockItems.addAll(stockItems);
         notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {
 
-        void onItemClicked(int position, Material materials);
+        void onItemClicked(int position, StockItem materials);
 
     }
 

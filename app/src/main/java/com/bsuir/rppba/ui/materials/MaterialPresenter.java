@@ -45,7 +45,7 @@ public class MaterialPresenter extends BasePresenter<MaterialContract.MaterialsV
                 new ArrayList<>()));
 
         stockItems.add(new StockItem("https://s3-alpha-sig.figma.com/img/57a9/8dc6/804577e34c584f12c771dc29783bda20?Expires=1585526400&Signature=bURuq0V6YTbZN4SKNXLN-YDOUqQRkQLg06~fPPzd-vRuDV23pPyX8P5T5dXA133-acI3Mrjx8GVYGRwOgohl5u~6b-d9XH3LjnmcW3BUmEibJvZoOzykYn4KUEKDx~CwWn-LLC1kJcJV0G04AI5QJ7oLvIZKqUtAFYEChtw8bwdWtA-3wh-v9YQNPVO5P1p2Hubql43IqYBjNTvEouaFVlBis7kV8Q3tFLKf5sfFqF18wnsJmi1KA9-dMt-nhUkcrtMNbCjG-mwTEh-v4q3gY~UNitVrmI6tg7uFiM2fXPLa5Gm659wq75EbpfVXsyzSReo2UNe8sExyywJX6sNj7w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                "Rod",
+                "Pencil Form",
                 "Big",
                 100,
                 new ArrayList<>()));

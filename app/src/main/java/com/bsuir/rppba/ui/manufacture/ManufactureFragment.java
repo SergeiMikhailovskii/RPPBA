@@ -14,22 +14,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+public class ManufactureFragment extends Fragment {
 
-    public class ManufactureFragment extends Fragment {
-
-        private Button sendButton;
-        private Button getButton;
+    private Button sendToManufactureButton;
+    private Button getFromManufactureButton;
 
 
-        @Nullable
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.manufacture_fragment, container, false);
-            sendButton = view.findViewById(R.id.sendButton);
-            getButton = view.findViewById(R.id.getButton);
-            sendButton.setOnClickListener(v -> Toast.makeText(getContext(), "Send", Toast.LENGTH_SHORT).show());
-            getButton.setOnClickListener(v -> Toast.makeText(getContext(), "Get", Toast.LENGTH_SHORT).show());
-            return view;
-        }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.manufacture_fragment, container, false);
+        sendToManufactureButton = view.findViewById(R.id.sendToManufactureButton);
+        getFromManufactureButton = view.findViewById(R.id.getFromManufactureButton);
+        sendToManufactureButton.setOnClickListener(v -> Toast.makeText(getContext(), "Send", Toast.LENGTH_SHORT).show());
+        getFromManufactureButton.setOnClickListener(v -> Toast.makeText(getContext(), "Get", Toast.LENGTH_SHORT).show());
+        return view;
     }
+}
 

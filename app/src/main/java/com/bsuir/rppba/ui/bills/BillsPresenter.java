@@ -14,16 +14,16 @@ public class BillsPresenter extends BasePresenter<BillsContract.BillsView> imple
 
         List<Bill> bills = new ArrayList<>();
 
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
-        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, 12345));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", false, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", false, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", false, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "Out", true, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "In", true, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "In", true, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "In", true, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "In", true, Long.parseLong("1585669457430")));
+        bills.add(new Bill("BY12345/12341", "Government Transfer", "In", true, Long.parseLong("1585669457430")));
 
         view.showLoadingIndicator(false);
         view.onBillsLoaded(bills);

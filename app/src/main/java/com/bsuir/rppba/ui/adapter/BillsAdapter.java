@@ -13,8 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.Bill;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -39,7 +42,7 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Bill bill = bills.get(position);
         holder.billNumberTv.setText("Number: " + bill.getBillId());
-        holder.createdAtTv.setText("Created at: " + bill.getDate());
+        holder.createdAtTv.setText("Created at: " + new SimpleDateFormat("E, dd MMM yyyy", Locale.ENGLISH).format(new Date(bill.getDate())));
         holder.supplier.setText(bill.getStockItemSupplier());
 
         if (bill.isBillInProgress()) {

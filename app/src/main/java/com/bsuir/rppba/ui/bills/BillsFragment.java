@@ -38,7 +38,8 @@ public class BillsFragment extends Fragment implements BillsContract.BillsView, 
         addBillFab = view.findViewById(R.id.add_bill_fab);
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
         billsList.setLayoutManager(new LinearLayoutManager(getContext()));
-        billsList.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
+
+        swipeRefreshLayout.setOnRefreshListener(() -> presenter.loadBills());
 
         adapter = new BillsAdapter(this);
         billsList.setAdapter(adapter);

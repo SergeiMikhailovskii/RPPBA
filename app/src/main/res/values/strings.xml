@@ -7,5 +7,7 @@
     <string name="products">Products</string>
     <string name="bills">Bills</string>
     <string name="manufacture">Manufacture</string>
+    <string name="sendButton">Send material to manufacture</string>
+    <string name="getButton">Get material from manufacture</string>
 
 </resources>

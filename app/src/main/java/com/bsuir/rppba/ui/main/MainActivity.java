@@ -39,9 +39,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.products:
                     menuItem.setChecked(true);
                     fragment = new ProductFragment();
+                    break;
                 case R.id.manufacture:
                     menuItem.setChecked(true);
                     fragment = new ManufactureFragment();
+                    break;
                 default:
                     break;
             }

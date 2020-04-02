@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.bsuir.rppba.R;
+import com.bsuir.rppba.ui.bills.BillsFragment;
 import com.bsuir.rppba.ui.manufacture.ManufactureFragment;
 import com.bsuir.rppba.ui.materials.MaterialFragment;
 import com.bsuir.rppba.ui.products.ProductFragment;
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.products:
                     menuItem.setChecked(true);
                     fragment = new ProductFragment();
+                    break;
+                case R.id.bills:
+                    menuItem.setChecked(true);
+                    fragment = new BillsFragment();
                     break;
                 case R.id.manufacture:
                     menuItem.setChecked(true);

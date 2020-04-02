@@ -1,6 +1,6 @@
 package com.bsuir.rppba.data.entity;
 
-public class Place {
+public class Place extends Entity {
 
     private String place;
     private int amount;

@@ -9,5 +9,16 @@
     <string name="manufacture">Manufacture</string>
     <string name="sendButton">Send material to manufacture</string>
     <string name="getButton">Get material from manufacture</string>
+    <string name="Unsorted">Unsorted</string>
+    <string name="A1">A1</string>
+    <string name="A2">A2</string>
+    <string name="A3">A3</string>
+    <string name="A4">A4</string>
+    <string name="A100">100</string>
+    <string name="A90">90</string>
+    <string name="A80">80</string>
+    <string name="A70">70</string>
+    <string name="A60">60</string>
+    <string name="Move">Move</string>
 
 </resources>

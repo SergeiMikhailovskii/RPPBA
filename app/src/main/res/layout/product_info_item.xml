@@ -27,7 +27,7 @@
         app:layout_constraintStart_toEndOf="@id/guideline16"/>
 
     <TextView
-        android:id="@+id/infoTextView1"
+        android:id="@+id/infoTextViewPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Unsorted"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline17"/>
     <TextView
-        android:id="@+id/infoTextView2"
+        android:id="@+id/infoTextViewAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/A100"

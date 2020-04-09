@@ -56,6 +56,12 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.ViewHolder> 
         } else {
             holder.billIv.setImageResource(R.drawable.bill_in);
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            if (holder.getBindingAdapterPosition() != RecyclerView.NO_POSITION) {
+                onItemClickListener.onItemClicked(holder.getBindingAdapterPosition(), bill);
+            }
+        });
     }
 
     @Override
@@ -96,6 +102,7 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.ViewHolder> 
             createdAtTv = itemView.findViewById(R.id.created_at_tv);
             billIv = itemView.findViewById(R.id.bill_icon);
             billNumberTv = itemView.findViewById(R.id.bill_number);
+
         }
     }
 

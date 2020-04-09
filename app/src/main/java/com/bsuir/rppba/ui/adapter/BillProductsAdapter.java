@@ -29,6 +29,10 @@ public class BillProductsAdapter extends RecyclerView.Adapter<BillProductsAdapte
         notifyDataSetChanged();
     }
 
+    public List<StockItem> getStockItems() {
+        return stockItems;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

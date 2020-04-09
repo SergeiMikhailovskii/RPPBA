@@ -18,15 +18,12 @@ import com.bsuir.rppba.ui.adapter.BillProductsAdapter;
 public class CreateBillActivity extends AppCompatActivity implements CreateBillContract.CreateBillView {
 
     private CreateBillPresenter presenter = new CreateBillPresenter();
-    private MergeAdapter adapter;
 
     private Switch supplySellingSwitch;
     private EditText supplierEt;
-    private EditText waybillNumber;
+    private EditText waybillNumberEt;
     private CheckBox firstTestCb;
     private CheckBox secondTestCb;
-    private RecyclerView productsList;
-    private Button saveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +34,35 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
 
         supplySellingSwitch = findViewById(R.id.supply_selling_switch);
         supplierEt = findViewById(R.id.supplier_customer_et);
-        waybillNumber = findViewById(R.id.waybill_number_et);
+        waybillNumberEt = findViewById(R.id.waybill_number_et);
         firstTestCb = findViewById(R.id.first_test_cb);
         secondTestCb = findViewById(R.id.second_test_cb);
-        productsList = findViewById(R.id.products_list);
-        saveBtn = findViewById(R.id.save_btn);
+        RecyclerView productsList = findViewById(R.id.products_list);
+        Button saveBtn = findViewById(R.id.save_btn);
 
         BillProductsAdapter billProductsAdapter = new BillProductsAdapter();
 
         BillAddProductButtonAdapter billAddProductButtonAdapter = new BillAddProductButtonAdapter(billProductsAdapter::addRow);
 
-        adapter = new MergeAdapter(billProductsAdapter, billAddProductButtonAdapter);
+        MergeAdapter adapter = new MergeAdapter(billProductsAdapter, billAddProductButtonAdapter);
 
         productsList.setLayoutManager(new LinearLayoutManager(this));
         productsList.setAdapter(adapter);
+
+        saveBtn.setOnClickListener(v -> {
+            String type = supplySellingSwitch.isChecked() ? "Supply" : "Selling";
+            presenter.saveWaybill(type, supplierEt.getText().toString(), waybillNumberEt.getText().toString(), firstTestCb.isChecked(), secondTestCb.isChecked(), billProductsAdapter.getStockItems());
+        });
+
+    }
+
+    @Override
+    public void onWaybillSaved() {
+
+    }
+
+    @Override
+    public void onWaybillFailed() {
 
     }
 

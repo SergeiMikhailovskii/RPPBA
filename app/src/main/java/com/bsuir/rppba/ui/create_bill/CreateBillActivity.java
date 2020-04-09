@@ -7,13 +7,18 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.MergeAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bsuir.rppba.R;
+import com.bsuir.rppba.ui.adapter.BillAddProductButtonAdapter;
+import com.bsuir.rppba.ui.adapter.BillProductsAdapter;
 
 public class CreateBillActivity extends AppCompatActivity implements CreateBillContract.CreateBillView {
 
     private CreateBillPresenter presenter = new CreateBillPresenter();
+    private MergeAdapter adapter;
 
     private Switch supplySellingSwitch;
     private EditText supplierEt;
@@ -37,6 +42,15 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
         secondTestCb = findViewById(R.id.second_test_cb);
         productsList = findViewById(R.id.products_list);
         saveBtn = findViewById(R.id.save_btn);
+
+        BillProductsAdapter billProductsAdapter = new BillProductsAdapter();
+
+        BillAddProductButtonAdapter billAddProductButtonAdapter = new BillAddProductButtonAdapter(billProductsAdapter::addRow);
+
+        adapter = new MergeAdapter(billProductsAdapter, billAddProductButtonAdapter);
+
+        productsList.setLayoutManager(new LinearLayoutManager(this));
+        productsList.setAdapter(adapter);
 
     }
 

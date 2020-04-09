@@ -12,7 +12,7 @@ public interface ProductInfoContract {
         void onProductInfoFailed();
     }
 
-    interface ProductsInfoPresenters extends MvpPresenter<ProductInfoContract>{
+    interface ProductsInfoPresenters extends MvpPresenter<ProductInfoView>{
         void loadProductInfoList();
     }
 }

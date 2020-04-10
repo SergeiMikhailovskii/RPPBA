@@ -1,6 +1,7 @@
 package com.bsuir.rppba.ui.create_bill;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -8,6 +9,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.MergeAdapter;
@@ -16,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.ui.adapter.BillAddProductButtonAdapter;
 import com.bsuir.rppba.ui.adapter.BillProductsAdapter;
+import com.bsuir.rppba.ui.bills.BillsFragment;
+
+import java.util.Objects;
 
 public class CreateBillActivity extends AppCompatActivity implements CreateBillContract.CreateBillView {
 
@@ -27,12 +32,24 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
     private CheckBox firstTestCb;
     private CheckBox secondTestCb;
 
+    private boolean isUpdatingBill;
+    private String toolbarTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_bill);
 
         presenter.attachView(this);
+
+        isUpdatingBill = getIntent().getStringExtra(BillsFragment.BILL_NUMBER) == null;
+        toolbarTitle = getIntent().getStringExtra(BillsFragment.BILL_SUPPLIER);
+
+        if (toolbarTitle == null) {
+            toolbarTitle = "Create bill";
+        }
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(toolbarTitle);
 
         supplySellingSwitch = findViewById(R.id.supply_selling_switch);
         supplierEt = findViewById(R.id.supplier_customer_et);
@@ -62,6 +79,15 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
             presenter.saveWaybill(type, supplierEt.getText().toString(), waybillNumberEt.getText().toString(), firstTestCb.isChecked(), secondTestCb.isChecked(), billProductsAdapter.getStockItems());
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

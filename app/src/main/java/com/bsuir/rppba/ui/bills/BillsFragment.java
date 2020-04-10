@@ -22,6 +22,9 @@ import java.util.List;
 
 public class BillsFragment extends Fragment implements BillsContract.BillsView, BillsAdapter.OnItemClickListener {
 
+    public static final String BILL_NUMBER = "bill_number";
+    public static final String BILL_SUPPLIER = "bill_supplier";
+
     private BillsPresenter presenter = new BillsPresenter();
     private RecyclerView billsList;
     private FloatingActionButton addBillFab;
@@ -71,7 +74,10 @@ public class BillsFragment extends Fragment implements BillsContract.BillsView, 
 
     @Override
     public void onItemClicked(int position, Bill bill) {
-        startActivity(new Intent(getContext(), CreateBillActivity.class));
+        Intent intent = new Intent(getContext(), CreateBillActivity.class);
+        intent.putExtra(BILL_NUMBER, bill.getBillId());
+        intent.putExtra(BILL_SUPPLIER, bill.getStockItemSupplier());
+        startActivity(intent);
     }
 
 }

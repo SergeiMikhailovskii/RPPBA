@@ -5,8 +5,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.MergeAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +43,8 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
         Button saveBtn = findViewById(R.id.save_btn);
 
         BillProductsAdapter billProductsAdapter = new BillProductsAdapter();
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteBillProductCallback(billProductsAdapter));
+        itemTouchHelper.attachToRecyclerView(productsList);
 
         BillAddProductButtonAdapter billAddProductButtonAdapter = new BillAddProductButtonAdapter(billProductsAdapter::addRow);
 
@@ -50,6 +54,10 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
         productsList.setAdapter(adapter);
 
         saveBtn.setOnClickListener(v -> {
+            if (supplierEt.getText().toString().equals("") || waybillNumberEt.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
             String type = supplySellingSwitch.isChecked() ? "Supply" : "Selling";
             presenter.saveWaybill(type, supplierEt.getText().toString(), waybillNumberEt.getText().toString(), firstTestCb.isChecked(), secondTestCb.isChecked(), billProductsAdapter.getStockItems());
         });
@@ -58,12 +66,12 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
 
     @Override
     public void onWaybillSaved() {
-
+        Toast.makeText(getApplicationContext(), "Bill saved", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onWaybillFailed() {
-
+        Toast.makeText(getApplicationContext(), "Bill saving failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

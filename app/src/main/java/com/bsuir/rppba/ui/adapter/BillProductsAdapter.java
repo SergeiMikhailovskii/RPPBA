@@ -1,5 +1,8 @@
 package com.bsuir.rppba.ui.adapter;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +28,17 @@ public class BillProductsAdapter extends RecyclerView.Adapter<BillProductsAdapte
     }
 
     public void addRow() {
-        stockItems.add(new StockItem());
+        stockItems.add(0, new StockItem());
         notifyDataSetChanged();
     }
 
     public List<StockItem> getStockItems() {
         return stockItems;
+    }
+
+    public void deleteItem(int position) {
+        stockItems.remove(position);
+        notifyItemRemoved(position);
     }
 
     @NonNull
@@ -42,6 +50,40 @@ public class BillProductsAdapter extends RecyclerView.Adapter<BillProductsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.i(getClass().getName(), String.valueOf(position));
+        holder.name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                stockItems.get(position).setName(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        holder.amount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                stockItems.get(position).setAmount(Integer.parseInt(s.toString()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 

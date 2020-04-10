@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="8dp"
-    android:paddingHorizontal="16dp">
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp">
 
     <EditText
         android:id="@+id/name_et"
@@ -27,7 +27,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/amount"
-        android:inputType="text"
+        android:inputType="number"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline11"

@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -58,12 +59,12 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
 
     @Override
     public void onWaybillSaved() {
-
+        Toast.makeText(getApplicationContext(), "Bill saved", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onWaybillFailed() {
-
+        Toast.makeText(getApplicationContext(), "Bill saving failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

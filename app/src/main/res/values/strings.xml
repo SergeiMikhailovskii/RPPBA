@@ -9,5 +9,15 @@
     <string name="manufacture">Manufacture</string>
     <string name="sendButton">Send material to manufacture</string>
     <string name="getButton">Get material from manufacture</string>
+    <string name="supply">Supply</string>
+    <string name="selling">Selling</string>
+    <string name="supplier_customer">Supplier/Customer</string>
+    <string name="waybill_number">Waybill number</string>
+    <string name="passed_first_test">Passed first test</string>
+    <string name="passed_second_test">Passed second test</string>
+    <string name="save">Save</string>
+    <string name="product_title">Product title</string>
+    <string name="amount">Amount</string>
+    <string name="add_row">Add row</string>
 
 </resources>

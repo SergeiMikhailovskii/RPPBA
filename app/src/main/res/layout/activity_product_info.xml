@@ -7,7 +7,7 @@
     tools:context=".ui.productsinfo.ProductInfoActivity">
 
     <ImageView
-        android:id="@+id/penImageView"
+        android:id="@+id/productImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -23,15 +23,15 @@
         android:id="@+id/swipe_refresh"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/penImageView"
+        app:layout_constraintTop_toBottomOf="@id/productImage"
         app:layout_constraintEnd_toStartOf="@id/guideline14"
         app:layout_constraintStart_toEndOf="@id/guideline13">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productInfo_list"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/penImageView"
+            app:layout_constraintTop_toBottomOf="@id/productImage"
             app:layout_constraintEnd_toStartOf="@id/guideline14"
             app:layout_constraintStart_toEndOf="@id/guideline13"/>
 

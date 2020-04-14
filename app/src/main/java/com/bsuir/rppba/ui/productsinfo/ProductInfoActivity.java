@@ -64,6 +64,6 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
 
     @Override
     public void showLoadingIndicator(boolean value) {
-
+        swipeRefreshLayout.setRefreshing(true);
     }
 }

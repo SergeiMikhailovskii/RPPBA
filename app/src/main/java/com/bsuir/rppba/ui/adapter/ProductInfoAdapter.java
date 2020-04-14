@@ -35,11 +35,11 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Place place = placeArrayList.get(position);
-        holder.infoTextViewPlace.setText(place.getPlace());
-        holder.infoTextViewAmount.setText(place.getAmount());
-        holder.infoButton.setText(R.string.Move);
+        holder.placeTextView.setText(place.getPlace());
+        holder.amountTextView.setText(place.getAmount());
+        holder.moveButton.setText(R.string.Move);
 
-        holder.itemView.setOnClickListener(v -> {
+        holder.moveButton.setOnClickListener(v -> {
             if (holder.getAdapterPosition() != RecyclerView.NO_POSITION){
                 onItemClickListener.onItemClick(holder.getAdapterPosition(), place);
             }
@@ -69,15 +69,15 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView infoTextViewPlace;
-        private TextView infoTextViewAmount;
-        private Button infoButton;
+        private TextView placeTextView;
+        private TextView amountTextView;
+        private Button moveButton;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            infoTextViewPlace = itemView.findViewById(R.id.infoTextViewPlace);
-            infoTextViewAmount = itemView.findViewById(R.id.infoTextViewAmount);
-            infoButton = itemView.findViewById(R.id.infoButton);
+            placeTextView = itemView.findViewById(R.id.placeTextView);
+            amountTextView = itemView.findViewById(R.id.amountTextView);
+            moveButton = itemView.findViewById(R.id.moveButton);
 
         }
     }

@@ -4,8 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.Place;
@@ -13,15 +15,12 @@ import com.bsuir.rppba.data.entity.Place;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.ViewHolder> {
 
     private List<Place> placeArrayList = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
-    public ProductInfoAdapter(OnItemClickListener onItemClickListener){
+    public ProductInfoAdapter(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -40,7 +39,7 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
         holder.moveButton.setText(R.string.Move);
 
         holder.moveButton.setOnClickListener(v -> {
-            if (holder.getAdapterPosition() != RecyclerView.NO_POSITION){
+            if (holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
                 onItemClickListener.onItemClick(holder.getAdapterPosition(), place);
             }
         });
@@ -57,14 +56,14 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
         return position;
     }
 
-    public void setData (List<Place> placeArrayList){
+    public void setData(List<Place> placeArrayList) {
         this.placeArrayList.clear();
         this.placeArrayList.addAll(placeArrayList);
         notifyDataSetChanged();
     }
 
-    public interface OnItemClickListener{
-        void onItemClick (int position,Place place);
+    public interface OnItemClickListener {
+        void onItemClick(int position, Place place);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

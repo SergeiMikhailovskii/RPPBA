@@ -48,7 +48,7 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
         adapter.setOnClickUserListener(new StockAdapter.OnUserClickListener() {
             @Override
             public void onUserClick(int position) {
-                startActivity(new Intent(context, ProductInfoActivity.class));
+                startActivity(new Intent(getContext(), ProductInfoActivity.class));
             }
         });
 

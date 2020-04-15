@@ -45,7 +45,7 @@ public class ProductFragment extends Fragment implements ProductContract.Product
         products.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
         adapter = new StockAdapter();
         products.setAdapter(adapter);
-        adapter.setOnClickUserListener(position -> startActivity(new Intent(context, ProductInfoActivity.class)));
+        adapter.setOnClickUserListener(position -> startActivity(new Intent(getContext(), ProductInfoActivity.class)));
 
 
         presenter.loadProductsList();

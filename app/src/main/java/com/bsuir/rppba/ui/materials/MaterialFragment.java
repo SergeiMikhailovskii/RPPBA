@@ -1,5 +1,7 @@
 package com.bsuir.rppba.ui.materials;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,16 +18,18 @@ import android.widget.Toast;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.adapter.StockAdapter;
+import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
 
 import java.util.List;
 import java.util.Objects;
 
-public class MaterialFragment extends Fragment implements MaterialContract.MaterialsView, StockAdapter.OnItemClickListener {
+public class MaterialFragment extends Fragment implements MaterialContract.MaterialsView{
 
     private MaterialPresenter presenter = new MaterialPresenter();
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView materials;
     private StockAdapter adapter;
+    private Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,8 +43,14 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
         materials = view.findViewById(R.id.materials_list);
         materials.setLayoutManager(new LinearLayoutManager(getContext()));
         materials.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
-        adapter = new StockAdapter(this);
+        adapter = new StockAdapter();
         materials.setAdapter(adapter);
+        adapter.setOnClickUserListener(new StockAdapter.OnUserClickListener() {
+            @Override
+            public void onUserClick(int position) {
+                startActivity(new Intent(context, ProductInfoActivity.class));
+            }
+        });
 
         presenter.loadMaterialsList();
 
@@ -68,10 +78,5 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
         swipeRefreshLayout.setRefreshing(value);
     }
 
-    @Override
-    public void onItemClicked(int position, StockItem materials) {
-        //TODO replace with Intent
-        Toast.makeText(getContext(), "Clicked!", Toast.LENGTH_SHORT).show();
-    }
 
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -13,6 +14,7 @@ import com.bsuir.rppba.data.entity.Place;
 import com.bsuir.rppba.ui.adapter.ProductInfoAdapter;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductInfoActivity extends AppCompatActivity implements ProductInfoContract.ProductInfoView, ProductInfoAdapter.OnItemClickListener {
 
@@ -33,7 +35,7 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
 
         productInfoRecyclerView = findViewById(R.id.productInfo_list);
         productInfoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        // productInfoRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(DividerItemDecoration.VERTICAL, this));
+        //productInfoRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(DividerItemDecoration.VERTICAL, this));
         adapter = new ProductInfoAdapter(this);
         productInfoRecyclerView.setAdapter(adapter);
         productInfoPresenter.loadProductInfoList();

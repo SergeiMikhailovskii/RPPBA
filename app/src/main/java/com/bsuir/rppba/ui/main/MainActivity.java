@@ -51,10 +51,6 @@ public class MainActivity extends AppCompatActivity {
                     menuItem.setChecked(true);
                     fragment = new ManufactureFragment();
                     break;
-                case R.id.productsInfo:
-                    menuItem.setChecked(true);
-                    startActivity(new Intent(MainActivity.this, ProductInfoActivity.class));
-                    break;
                 default:
                     break;
             }

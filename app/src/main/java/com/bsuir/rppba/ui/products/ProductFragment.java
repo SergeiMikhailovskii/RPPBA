@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.adapter.StockAdapter;
+import com.bsuir.rppba.ui.manufacture.ManufactureFragment;
+import com.bsuir.rppba.ui.materials.MaterialFragment;
 import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
 
 import java.util.List;
@@ -24,7 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class ProductFragment extends Fragment implements ProductContract.ProductView {
+public class ProductFragment extends Fragment implements ProductContract.ProductView, StockAdapter.OnItemClickListener {
 
     private ProductContract.ProductsPresenter presenter = new ProductPresenter();
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -43,9 +45,8 @@ public class ProductFragment extends Fragment implements ProductContract.Product
         products = view.findViewById(R.id.products_list);
         products.setLayoutManager(new LinearLayoutManager(getContext()));
         products.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
-        adapter = new StockAdapter();
+        adapter = new StockAdapter(this);
         products.setAdapter(adapter);
-        adapter.setOnClickUserListener(position -> startActivity(new Intent(context, ProductInfoActivity.class)));
 
 
         presenter.loadProductsList();
@@ -74,5 +75,10 @@ public class ProductFragment extends Fragment implements ProductContract.Product
     @Override
     public void showLoadingIndicator(boolean value) {
         swipeRefreshLayout.setRefreshing(value);
+    }
+
+    @Override
+    public void onItemClick() {
+        startActivity(new Intent(getActivity(), ProductInfoActivity.class));
     }
 }

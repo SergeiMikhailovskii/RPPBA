@@ -30,12 +30,12 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
 
         productInfoPresenter.attachView(this);
 
-        swipeRefreshLayout = findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh1);
         swipeRefreshLayout.setOnRefreshListener(() -> productInfoPresenter.loadProductInfoList());
 
         productInfoRecyclerView = findViewById(R.id.productInfo_list);
         productInfoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //productInfoRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(DividerItemDecoration.VERTICAL, this));
+        productInfoRecyclerView.addItemDecoration(new DividerItemDecoration(this,(DividerItemDecoration.VERTICAL)));
         adapter = new ProductInfoAdapter(this);
         productInfoRecyclerView.setAdapter(adapter);
         productInfoPresenter.loadProductInfoList();
@@ -66,6 +66,6 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
 
     @Override
     public void showLoadingIndicator(boolean value) {
-        swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

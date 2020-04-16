@@ -18,18 +18,18 @@ import android.widget.Toast;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.adapter.StockAdapter;
+import com.bsuir.rppba.ui.login.LoginActivity;
 import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
 
 import java.util.List;
 import java.util.Objects;
 
-public class MaterialFragment extends Fragment implements MaterialContract.MaterialsView{
+public class MaterialFragment extends Fragment implements MaterialContract.MaterialsView, StockAdapter.OnItemClickListener{
 
     private MaterialPresenter presenter = new MaterialPresenter();
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView materials;
     private StockAdapter adapter;
-    private Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,20 +37,15 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
         View view = inflater.inflate(R.layout.fragment_materials, container, false);
         presenter.attachView(this);
 
+
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setOnRefreshListener(() -> presenter.loadMaterialsList());
-
         materials = view.findViewById(R.id.materials_list);
         materials.setLayoutManager(new LinearLayoutManager(getContext()));
         materials.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
-        adapter = new StockAdapter();
+        adapter = new StockAdapter(this);
         materials.setAdapter(adapter);
-        adapter.setOnClickUserListener(new StockAdapter.OnUserClickListener() {
-            @Override
-            public void onUserClick(int position) {
-                startActivity(new Intent(context, ProductInfoActivity.class));
-            }
-        });
+
 
         presenter.loadMaterialsList();
 
@@ -79,4 +74,8 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
     }
 
 
+    @Override
+    public void onItemClick() {
+        startActivity(new Intent(getActivity(), ProductInfoActivity.class));
+    }
 }

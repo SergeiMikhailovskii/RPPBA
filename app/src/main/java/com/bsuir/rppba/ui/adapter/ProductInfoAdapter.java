@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.ViewHolder> {
 
-    private List<Place> placeArrayList = new ArrayList<>();
+    private List<Place> places = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
     public ProductInfoAdapter(OnItemClickListener onItemClickListener){
@@ -33,15 +33,15 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Place place = placeArrayList.get(position);
-        holder.placeTextView.setText(place.getPlace());
-        holder.amountTextView.setText(place.getAmount());
-        holder.moveButton.setText(R.string.Move);
+    public void onBindViewHolder(@NonNull ViewHolder view, int position) {
+        Place place = places.get(position);
+        view.placeTextView.setText(place.getPlace());
+        view.amountTextView.setText(place.getAmount()+"");
+        view.moveButton.setText(R.string.Move);
 
-        holder.moveButton.setOnClickListener(v -> {
-            if (holder.getAdapterPosition() != RecyclerView.NO_POSITION){
-                onItemClickListener.onItemClick(holder.getAdapterPosition(), place);
+        view.moveButton.setOnClickListener(v -> {
+            if (view.getAdapterPosition() != RecyclerView.NO_POSITION){
+                onItemClickListener.onItemClick(view.getAdapterPosition(), place);
             }
         });
 
@@ -49,7 +49,7 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
 
     @Override
     public int getItemCount() {
-        return placeArrayList.size();
+        return places.size();
     }
 
     @Override
@@ -58,8 +58,8 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
     }
 
     public void setData (List<Place> placeArrayList){
-        this.placeArrayList.clear();
-        this.placeArrayList.addAll(placeArrayList);
+        this.places.clear();
+        this.places.addAll(placeArrayList);
         notifyDataSetChanged();
     }
 

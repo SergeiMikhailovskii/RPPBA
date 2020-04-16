@@ -24,26 +24,20 @@ import java.util.List;
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
 
     private List<StockItem> stockItems = new ArrayList<>();
-    private OnUserClickListener listener;
+    private OnItemClickListener onItemClickListener;
 
-    public interface OnUserClickListener{
-        void onUserClick(int position);
+
+    public StockAdapter(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
 
-    public StockAdapter() {
-
-    }
-
-    public void setOnClickUserListener(OnUserClickListener listener){
-        this.listener = listener;
-    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_element, parent, false);
-        return new ViewHolder(itemView, listener);
+        return new ViewHolder(itemView);
     }
 
     @SuppressLint("SetTextI18n")
@@ -54,6 +48,11 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
         holder.subName.setText(stockItem.getSubName());
         holder.name.setText(stockItem.getName());
         Glide.with(LogisticsApp.getAppContext()).load(stockItem.getIcon()).into(holder.icon);
+        holder.itemView.setOnClickListener(v -> {
+            if (holder.getAdapterPosition() != RecyclerView.NO_POSITION){
+                onItemClickListener.onItemClick();
+            }
+        });
 
     }
 
@@ -73,15 +72,19 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
+    public interface OnItemClickListener{
+        void onItemClick ();
+    }
 
-    class ViewHolder extends RecyclerView.ViewHolder  {
+
+    static class ViewHolder extends RecyclerView.ViewHolder  {
 
         ImageView icon;
         TextView name;
         TextView subName;
         TextView amount;
 
-        ViewHolder(@NonNull View itemView, final OnUserClickListener listener) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             icon = itemView.findViewById(R.id.icon);
@@ -89,17 +92,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
             subName = itemView.findViewById(R.id.subName);
             amount = itemView.findViewById(R.id.amount);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener!=null){
-                        int position = getAdapterPosition();
-                        if (position!=RecyclerView.NO_POSITION){
-                            listener.onUserClick(position);
-                        }
-                    }
-                }
-            });
         }
     }
 }

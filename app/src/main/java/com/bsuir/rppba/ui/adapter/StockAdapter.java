@@ -50,7 +50,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
         Glide.with(LogisticsApp.getAppContext()).load(stockItem.getIcon()).into(holder.icon);
         holder.itemView.setOnClickListener(v -> {
             if (holder.getAdapterPosition() != RecyclerView.NO_POSITION){
-                onItemClickListener.onItemClick();
+                int adapterPosition = holder.getAdapterPosition();
+                onItemClickListener.onItemClick(adapterPosition);
             }
         });
 
@@ -73,7 +74,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     }
 
     public interface OnItemClickListener{
-        void onItemClick ();
+        void onItemClick (int position);
     }
 
 

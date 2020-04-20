@@ -78,7 +78,7 @@ public class ProductFragment extends Fragment implements ProductContract.Product
     }
 
     @Override
-    public void onItemClick() {
+    public void onItemClick(int position) {
         startActivity(new Intent(getActivity(), ProductInfoActivity.class));
     }
 }

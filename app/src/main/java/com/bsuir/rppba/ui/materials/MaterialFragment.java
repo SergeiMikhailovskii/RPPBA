@@ -75,7 +75,7 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
 
 
     @Override
-    public void onItemClick() {
+    public void onItemClick(int position) {
         startActivity(new Intent(getActivity(), ProductInfoActivity.class));
     }
 }

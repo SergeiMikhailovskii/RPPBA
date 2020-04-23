@@ -34,12 +34,12 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
         Intent intent = getIntent();
         if (intent != null){
             id = intent.getIntExtra("ID", 0);
-            Log.i("ID", String.valueOf(id));//тут я чекнул правильное id достаёт
+            Log.i("ID", String.valueOf(id));//тут я чекнул правильное ли id достаёт
         }
 
         productInfoPresenter.attachView(this);
 
-        swipeRefreshLayout = findViewById(R.id.swipe_refresh1);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setOnRefreshListener(() -> productInfoPresenter.loadProductInfoList());
 
         productInfoRecyclerView = findViewById(R.id.productInfo_list);
@@ -76,6 +76,6 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
 
     @Override
     public void showLoadingIndicator(boolean value) {
-        swipeRefreshLayout.setRefreshing(false);
+        swipeRefreshLayout.setRefreshing(value);
     }
 }

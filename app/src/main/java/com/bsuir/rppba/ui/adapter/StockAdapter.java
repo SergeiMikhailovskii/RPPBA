@@ -3,6 +3,7 @@ package com.bsuir.rppba.ui.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +22,17 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
 
-    private List<StockItem> stockItems = new ArrayList<>();
+    private ArrayList<StockItem> stockItems;
     private OnItemClickListener onItemClickListener;
 
 
-    public StockAdapter(OnItemClickListener onItemClickListener) {
+    public StockAdapter(OnItemClickListener onItemClickListener, ArrayList<StockItem> stockItems) {
         this.onItemClickListener = onItemClickListener;
+        this.stockItems = stockItems;
     }
 
 
@@ -43,6 +47,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.d("Tag", "bind, position = " + position);
         StockItem stockItem = stockItems.get(position);
         holder.amount.setText(stockItem.getAmount()+"");
         holder.subName.setText(stockItem.getSubName());

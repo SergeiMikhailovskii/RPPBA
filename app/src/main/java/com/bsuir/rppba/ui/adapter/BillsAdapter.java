@@ -105,5 +105,4 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.ViewHolder> 
 
         }
     }
-
 }

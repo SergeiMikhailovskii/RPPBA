@@ -21,6 +21,7 @@ import com.bsuir.rppba.ui.adapter.StockAdapter;
 import com.bsuir.rppba.ui.login.LoginActivity;
 import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +31,7 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView materials;
     private StockAdapter adapter;
+    private ArrayList<StockItem> stockItems;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +45,8 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
         materials = view.findViewById(R.id.materials_list);
         materials.setLayoutManager(new LinearLayoutManager(getContext()));
         materials.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
-        adapter = new StockAdapter(this);
+        stockItems = new ArrayList<>();
+        adapter = new StockAdapter(this, stockItems);
         materials.setAdapter(adapter);
 
 
@@ -76,6 +79,8 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
 
     @Override
     public void onItemClick(int position) {
-        startActivity(new Intent(getActivity(), ProductInfoActivity.class));
+       Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
+       intent.putExtra("ID", stockItems.get(position).getId());
+       startActivity(intent);
     }
 }

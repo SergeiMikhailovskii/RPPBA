@@ -1,6 +1,8 @@
 package com.bsuir.rppba.ui.productsinfo;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,11 +24,18 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView productInfoRecyclerView;
     private ProductInfoAdapter adapter;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
+
+        Intent intent = getIntent();
+        if (intent != null){
+            id = intent.getIntExtra("ID", 0);
+            Log.i("ID", String.valueOf(id));//тут я чекнул правильное id достаёт
+        }
 
         productInfoPresenter.attachView(this);
 
@@ -39,6 +48,7 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
         adapter = new ProductInfoAdapter(this);
         productInfoRecyclerView.setAdapter(adapter);
         productInfoPresenter.loadProductInfoList();
+
 
     }
 

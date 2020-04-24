@@ -5,7 +5,6 @@
     <string name="sign_in">Sign in</string>
     <string name="stockItems">Materials</string>
     <string name="products">Products</string>
-    <string name="productsInfo">ProductsInfo</string>
     <string name="bills">Bills</string>
     <string name="manufacture">Manufacture</string>
     <string name="sendButton">Send material to manufacture</string>

@@ -33,7 +33,8 @@ public class ProductFragment extends Fragment implements ProductContract.Product
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView products;
     private StockAdapter adapter;
-    private ArrayList<StockItem> stockItems;
+    private List<StockItem> stockItems = new ArrayList<>();
+    ;
 
     @Nullable
     @Override
@@ -47,7 +48,7 @@ public class ProductFragment extends Fragment implements ProductContract.Product
         products.setLayoutManager(new LinearLayoutManager(getContext()));
         products.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
         stockItems = new ArrayList<>();
-        adapter = new StockAdapter(this, stockItems);
+        adapter = new StockAdapter(this, (ArrayList<StockItem>) stockItems);
         products.setAdapter(adapter);
 
 
@@ -55,8 +56,6 @@ public class ProductFragment extends Fragment implements ProductContract.Product
 
         return view;
     }
-
-
 
 
     @Override

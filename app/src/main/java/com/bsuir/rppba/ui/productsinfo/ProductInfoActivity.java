@@ -32,9 +32,8 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
         setContentView(R.layout.activity_product_info);
 
         Intent intent = getIntent();
-        if (intent != null){
+        if (intent != null) {
             id = intent.getIntExtra("ID", 0);
-            Log.i("ID", String.valueOf(id));//тут я чекнул правильное ли id достаёт
         }
 
         productInfoPresenter.attachView(this);
@@ -44,7 +43,7 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
 
         productInfoRecyclerView = findViewById(R.id.productInfo_list);
         productInfoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        productInfoRecyclerView.addItemDecoration(new DividerItemDecoration(this,(DividerItemDecoration.VERTICAL)));
+        productInfoRecyclerView.addItemDecoration(new DividerItemDecoration(this, (DividerItemDecoration.VERTICAL)));
         adapter = new ProductInfoAdapter(this);
         productInfoRecyclerView.setAdapter(adapter);
         productInfoPresenter.loadProductInfoList();

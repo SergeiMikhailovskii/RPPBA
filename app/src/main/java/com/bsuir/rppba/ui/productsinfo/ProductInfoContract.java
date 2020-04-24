@@ -9,10 +9,11 @@ import java.util.List;
 public interface ProductInfoContract {
     interface ProductInfoView extends MvpView {
         void onProductInfoLoaded(List<Place> places);
+
         void onProductInfoFailed();
     }
 
-    interface ProductsInfoPresenters extends MvpPresenter<ProductInfoView>{
+    interface ProductsInfoPresenters extends MvpPresenter<ProductInfoView> {
         void loadProductInfoList();
     }
 }

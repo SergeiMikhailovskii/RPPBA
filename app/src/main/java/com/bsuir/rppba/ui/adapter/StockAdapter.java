@@ -1,9 +1,6 @@
 package com.bsuir.rppba.ui.adapter;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bsuir.rppba.LogisticsApp;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.StockItem;
-import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
 
-    private ArrayList<StockItem> stockItems;
+    private List<StockItem> stockItems = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
 
@@ -34,7 +29,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
         this.onItemClickListener = onItemClickListener;
         this.stockItems = stockItems;
     }
-
 
 
     @NonNull
@@ -47,15 +41,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("Tag", "bind, position = " + position);
         StockItem stockItem = stockItems.get(position);
-        holder.amount.setText(stockItem.getAmount()+"");
+        holder.amount.setText(stockItem.getAmount() + "");
         holder.subName.setText(stockItem.getSubName());
         holder.name.setText(stockItem.getName());
         Glide.with(LogisticsApp.getAppContext()).load(stockItem.getIcon()).into(holder.icon);
         holder.itemView.setOnClickListener(v -> {
-            if (holder.getAdapterPosition() != RecyclerView.NO_POSITION){
-                int adapterPosition = holder.getAdapterPosition();
+            if (holder.getBindingAdapterPosition() != RecyclerView.NO_POSITION) {
+                int adapterPosition = holder.getBindingAdapterPosition();
                 onItemClickListener.onItemClick(adapterPosition);
             }
         });
@@ -78,12 +71,12 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    public interface OnItemClickListener{
-        void onItemClick (int position);
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder  {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView icon;
         TextView name;

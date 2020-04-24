@@ -21,7 +21,7 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
     private List<Place> places = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
-    public ProductInfoAdapter(OnItemClickListener onItemClickListener){
+    public ProductInfoAdapter(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -36,12 +36,12 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
     public void onBindViewHolder(@NonNull ViewHolder view, int position) {
         Place place = places.get(position);
         view.placeTextView.setText(place.getPlace());
-        view.amountTextView.setText(place.getAmount()+"");
+        view.amountTextView.setText(place.getAmount() + "");
         view.moveButton.setText(R.string.Move);
 
         view.moveButton.setOnClickListener(v -> {
-            if (view.getAdapterPosition() != RecyclerView.NO_POSITION){
-                onItemClickListener.onItemClick(view.getAdapterPosition(), place);
+            if (view.getBindingAdapterPosition() != RecyclerView.NO_POSITION) {
+                onItemClickListener.onItemClick(view.getBindingAdapterPosition(), place);
             }
         });
 
@@ -57,14 +57,14 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
         return position;
     }
 
-    public void setData (List<Place> placeArrayList){
+    public void setData(List<Place> placeArrayList) {
         this.places.clear();
         this.places.addAll(placeArrayList);
         notifyDataSetChanged();
     }
 
-    public interface OnItemClickListener{
-        void onItemClick (int position,Place place);
+    public interface OnItemClickListener {
+        void onItemClick(int position, Place place);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

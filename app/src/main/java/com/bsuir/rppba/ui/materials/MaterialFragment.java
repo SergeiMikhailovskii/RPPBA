@@ -25,13 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MaterialFragment extends Fragment implements MaterialContract.MaterialsView, StockAdapter.OnItemClickListener{
+public class MaterialFragment extends Fragment implements MaterialContract.MaterialsView, StockAdapter.OnItemClickListener {
 
     private MaterialPresenter presenter = new MaterialPresenter();
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView materials;
     private StockAdapter adapter;
-    private ArrayList<StockItem> stockItems;
+    List<StockItem> stockItems = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +46,7 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
         materials.setLayoutManager(new LinearLayoutManager(getContext()));
         materials.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
         stockItems = new ArrayList<>();
-        adapter = new StockAdapter(this, stockItems);
+        adapter = new StockAdapter(this, (ArrayList<StockItem>) stockItems);
         materials.setAdapter(adapter);
 
 
@@ -79,8 +79,8 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
 
     @Override
     public void onItemClick(int position) {
-       Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
-       intent.putExtra("ID", stockItems.get(position).getId());
-       startActivity(intent);
+        Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
+        intent.putExtra("ID", stockItems.get(position).getId());
+        startActivity(intent);
     }
 }

@@ -1,5 +1,7 @@
 package com.bsuir.rppba.ui.products;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,11 @@ import android.widget.Toast;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.adapter.StockAdapter;
+import com.bsuir.rppba.ui.manufacture.ManufactureFragment;
+import com.bsuir.rppba.ui.materials.MaterialFragment;
+import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,6 +33,8 @@ public class ProductFragment extends Fragment implements ProductContract.Product
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView products;
     private StockAdapter adapter;
+    private List<StockItem> stockItems = new ArrayList<>();
+    ;
 
     @Nullable
     @Override
@@ -39,7 +47,8 @@ public class ProductFragment extends Fragment implements ProductContract.Product
         products = view.findViewById(R.id.products_list);
         products.setLayoutManager(new LinearLayoutManager(getContext()));
         products.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
-        adapter = new StockAdapter(this);
+        stockItems = new ArrayList<>();
+        adapter = new StockAdapter(this, (ArrayList<StockItem>) stockItems);
         products.setAdapter(adapter);
 
 
@@ -48,12 +57,6 @@ public class ProductFragment extends Fragment implements ProductContract.Product
         return view;
     }
 
-
-    @Override
-    public void onItemClicked(int position, StockItem productsList) {
-        //TODO replace with Intent
-        Toast.makeText(getContext(), "Clicked!", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onProductsLoaded(List<StockItem> productsList) {
@@ -73,5 +76,12 @@ public class ProductFragment extends Fragment implements ProductContract.Product
     @Override
     public void showLoadingIndicator(boolean value) {
         swipeRefreshLayout.setRefreshing(value);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
+        intent.putExtra("ID", stockItems.get(position).getId());
+        startActivity(intent);
     }
 }

@@ -18,14 +18,18 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
 
     private List<StockItem> stockItems = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
-    public StockAdapter(OnItemClickListener onItemClickListener) {
+
+    public StockAdapter(OnItemClickListener onItemClickListener, ArrayList<StockItem> stockItems) {
         this.onItemClickListener = onItemClickListener;
+        this.stockItems = stockItems;
     }
+
 
     @NonNull
     @Override
@@ -38,16 +42,17 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         StockItem stockItem = stockItems.get(position);
-        holder.amount.setText(stockItem.getAmount()+"");
+        holder.amount.setText(stockItem.getAmount() + "");
         holder.subName.setText(stockItem.getSubName());
         holder.name.setText(stockItem.getName());
         Glide.with(LogisticsApp.getAppContext()).load(stockItem.getIcon()).into(holder.icon);
-
         holder.itemView.setOnClickListener(v -> {
-            if (holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
-                onItemClickListener.onItemClicked(holder.getAdapterPosition(), stockItem);
+            if (holder.getBindingAdapterPosition() != RecyclerView.NO_POSITION) {
+                int adapterPosition = holder.getBindingAdapterPosition();
+                onItemClickListener.onItemClick(adapterPosition);
             }
         });
+
     }
 
     @Override
@@ -67,10 +72,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     }
 
     public interface OnItemClickListener {
-
-        void onItemClicked(int position, StockItem materials);
-
+        void onItemClick(int position);
     }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -86,7 +90,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
             name = itemView.findViewById(R.id.name);
             subName = itemView.findViewById(R.id.subName);
             amount = itemView.findViewById(R.id.amount);
+
         }
     }
-
 }

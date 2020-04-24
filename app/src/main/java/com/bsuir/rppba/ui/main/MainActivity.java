@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.bsuir.rppba.R;
@@ -11,6 +12,7 @@ import com.bsuir.rppba.ui.bills.BillsFragment;
 import com.bsuir.rppba.ui.manufacture.ManufactureFragment;
 import com.bsuir.rppba.ui.materials.MaterialFragment;
 import com.bsuir.rppba.ui.products.ProductFragment;
+import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

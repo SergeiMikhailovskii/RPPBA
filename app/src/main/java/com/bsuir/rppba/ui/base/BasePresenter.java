@@ -1,9 +1,11 @@
 package com.bsuir.rppba.ui.base;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 public class BasePresenter<View> implements MvpPresenter<View> {
 
-    // TODO add rx
     public View view = null;
+    public CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     @Override
     public void attachView(View view) {
@@ -13,6 +15,7 @@ public class BasePresenter<View> implements MvpPresenter<View> {
     @Override
     public void detachView() {
         this.view = null;
+        this.mCompositeDisposable.clear();
     }
 
 }

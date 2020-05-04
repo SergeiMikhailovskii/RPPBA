@@ -6,10 +6,10 @@ public class Bill extends Entity {
     private String stockItemReceiver;
     private String stockItemSupplier;
     private String type;
-    private boolean isBillInProgress;
+    private boolean areChecksPassed;
     private int amount;
     private int price;
-    private long date;
+    private String date;
     private QualityControl qualityControl;
 
     public Bill(
@@ -17,17 +17,17 @@ public class Bill extends Entity {
             String stockItemReceiver,
             String stockItemSupplier,
             String type,
-            boolean isBillInProgress,
+            boolean areChecksPassed,
             int amount,
             int price,
-            long date,
+            String date,
             QualityControl qualityControl
     ) {
         this.billId = billId;
         this.stockItemReceiver = stockItemReceiver;
         this.stockItemSupplier = stockItemSupplier;
         this.type = type;
-        this.isBillInProgress = isBillInProgress;
+        this.areChecksPassed = areChecksPassed;
         this.amount = amount;
         this.price = price;
         this.date = date;
@@ -37,11 +37,11 @@ public class Bill extends Entity {
     public Bill() {
     }
 
-    public Bill(String billId, String stockItemSupplier, String type, boolean isBillInProgress, long date) {
+    public Bill(String billId, String stockItemSupplier, String type, boolean areChecksPassed, String date) {
         this.billId = billId;
         this.stockItemSupplier = stockItemSupplier;
         this.type = type;
-        this.isBillInProgress = isBillInProgress;
+        this.areChecksPassed = areChecksPassed;
         this.date = date;
     }
 
@@ -77,12 +77,12 @@ public class Bill extends Entity {
         this.type = type;
     }
 
-    public boolean isBillInProgress() {
-        return isBillInProgress;
+    public boolean isAreChecksPassed() {
+        return areChecksPassed;
     }
 
-    public void setBillInProgress(boolean billInProgress) {
-        isBillInProgress = billInProgress;
+    public void setAreChecksPassed(boolean areChecksPassed) {
+        this.areChecksPassed = areChecksPassed;
     }
 
     public int getAmount() {
@@ -101,11 +101,11 @@ public class Bill extends Entity {
         this.price = price;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -1,12 +1,15 @@
 package com.bsuir.rppba.ui.manufacture_items;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bsuir.rppba.R;
+import com.bsuir.rppba.data.entity.Place;
 import com.bsuir.rppba.data.entity.RawMaterialsResponse;
 import com.bsuir.rppba.ui.manufacture.ManufactureFragment;
 
@@ -20,6 +23,8 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
     private Spinner cellsSpinner;
     private Spinner productsSpinner;
 
+    private List<RawMaterialsResponse> products = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,26 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
 
         cellsSpinner = findViewById(R.id.cells_spinner);
         productsSpinner = findViewById(R.id.products_spinner);
+
+        productsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!products.isEmpty()) {
+                    List<String> names = new ArrayList<>();
+                    for (Place cell : products.get(0).getCell()) {
+                        names.add(String.valueOf(cell.getId()));
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, names);
+                    cellsSpinner.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        cellsSpinner.setEnabled(false);
 
         presenter.attachView(this);
 
@@ -38,6 +63,10 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
 
     @Override
     public void onProductsLoaded(List<RawMaterialsResponse> products) {
+        cellsSpinner.setEnabled(true);
+
+        this.products = products;
+
         List<String> productNames = new ArrayList<>();
 
         for (RawMaterialsResponse product : products) {

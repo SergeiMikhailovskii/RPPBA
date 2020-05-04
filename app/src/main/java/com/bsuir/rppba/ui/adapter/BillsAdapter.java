@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.Bill;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -41,20 +44,32 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Bill bill = bills.get(position);
-        holder.billNumberTv.setText("Number: " + bill.getBillId());
-        holder.createdAtTv.setText("Created at: " + new SimpleDateFormat("E, dd MMM yyyy", Locale.ENGLISH).format(new Date(bill.getDate())));
-        holder.supplier.setText(bill.getStockItemSupplier());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.s", Locale.ENGLISH);
+        Date date = null;
+        Calendar calendar = Calendar.getInstance();
 
-        if (bill.isBillInProgress()) {
-            holder.statusIv.setImageResource(R.drawable.ic_in_progress);
-        } else {
-            holder.statusIv.setImageResource(R.drawable.ic_done);
+        try {
+            date = dateFormat.parse(bill.getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
-        if (bill.getType().equals("Out")) {
-            holder.billIv.setImageResource(R.drawable.bill_out);
+        calendar.setTime(Objects.requireNonNull(date));
+
+        holder.billNumberTv.setText("Number: " + bill.getBillId());
+        holder.createdAtTv.setText("Created at: " + calendar.get(Calendar.DAY_OF_MONTH) + "." + calendar.get(Calendar.MONTH) + "." + calendar.get(Calendar.YEAR) + ", " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
+        holder.supplier.setText(bill.getStockItemSupplier());
+
+        if (bill.isAreChecksPassed()) {
+            holder.statusIv.setImageResource(R.drawable.ic_done);
         } else {
+            holder.statusIv.setImageResource(R.drawable.ic_in_progress);
+        }
+
+        if (bill.getType().equals("SUPPLY")) {
             holder.billIv.setImageResource(R.drawable.bill_in);
+        } else {
+            holder.billIv.setImageResource(R.drawable.bill_out);
         }
 
         holder.itemView.setOnClickListener(v -> {

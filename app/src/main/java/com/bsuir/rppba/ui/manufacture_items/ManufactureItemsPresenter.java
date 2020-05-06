@@ -2,6 +2,7 @@ package com.bsuir.rppba.ui.manufacture_items;
 
 import com.bsuir.rppba.data.api.LogisticsAPIFactory;
 import com.bsuir.rppba.data.entity.RawMaterialsResponse;
+import com.bsuir.rppba.data.entity.SendMaterialsToManufactureBody;
 import com.bsuir.rppba.ui.base.BasePresenter;
 import com.bsuir.rppba.ui.manufacture.ManufactureFragment;
 
@@ -34,6 +35,14 @@ public class ManufactureItemsPresenter extends BasePresenter<ManufactureItemsCon
                         view.onProductsFailed();
                     }
                 }));
+    }
+
+    void sendMaterialsToManufacture(int id, int cellId, int amount) {
+        SendMaterialsToManufactureBody body = new SendMaterialsToManufactureBody(cellId, amount);
+        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().sendMaterialsToManufacture(id, body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe());
     }
 
 }

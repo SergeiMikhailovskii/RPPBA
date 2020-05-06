@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class RawMaterialsResponse {
 
     private int id;
-    private int[] cell;
+    private Place[] cell;
     private int amount;
     private double price;
     private Nomenclature nomenclature;
@@ -16,7 +16,7 @@ public class RawMaterialsResponse {
     @SerializedName("receiving_date")
     private String receivingDate;
 
-    public RawMaterialsResponse(int id, int[] cell, int amount, double price, String dateOfManufacture, String receivingDate, Nomenclature nomenclature) {
+    public RawMaterialsResponse(int id, Place[] cell, int amount, double price, String dateOfManufacture, String receivingDate, Nomenclature nomenclature) {
         this.id = id;
         this.cell = cell;
         this.amount = amount;
@@ -37,11 +37,11 @@ public class RawMaterialsResponse {
         this.id = id;
     }
 
-    public int[] getCell() {
+    public Place[] getCell() {
         return cell;
     }
 
-    public void setCell(int[] cell) {
+    public void setCell(Place[] cell) {
         this.cell = cell;
     }
 

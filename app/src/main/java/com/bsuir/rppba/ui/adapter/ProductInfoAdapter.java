@@ -1,10 +1,10 @@
 package com.bsuir.rppba.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bsuir.rppba.R;
@@ -32,11 +32,12 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder view, int position) {
         Place place = places.get(position);
         view.placeTextView.setText(place.getPlace());
-        view.amountTextView.setText(place.getAmount() + "");
+        view.amountTextView.setText(place.getActualSize() + "");
         view.moveButton.setText(R.string.Move);
 
         view.moveButton.setOnClickListener(v -> {

@@ -71,6 +71,9 @@ public class ManufactureItemsPresenter extends BasePresenter<ManufactureItemsCon
         mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().getNomenclatures()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .flatMapIterable(nomenclatures -> nomenclatures)
+                .filter(nomenclature -> nomenclature.getNomenclatureType().equals("PRODUCT"))
+                .toList()
                 .subscribe(nomenclatures -> view.onNomenclaturesLoaded(nomenclatures)));
     }
 

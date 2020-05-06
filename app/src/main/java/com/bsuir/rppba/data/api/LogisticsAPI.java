@@ -2,6 +2,8 @@ package com.bsuir.rppba.data.api;
 
 import androidx.annotation.NonNull;
 
+import com.bsuir.rppba.data.entity.GetProductsFromManufactureBody;
+import com.bsuir.rppba.data.entity.Nomenclature;
 import com.bsuir.rppba.data.entity.RawMaterialsResponse;
 import com.bsuir.rppba.data.entity.SendMaterialsToManufactureBody;
 import com.bsuir.rppba.data.entity.WaybillResponse;
@@ -31,5 +33,11 @@ public interface LogisticsAPI {
 
     @POST("/api/product/{id}/send-materials-to-manufacture")
     Completable sendMaterialsToManufacture(@Path("id") int id, @Body SendMaterialsToManufactureBody body);
+
+    @POST("/api/product/create-product")
+    Completable getProductsFromManufacture(@Body GetProductsFromManufactureBody body);
+
+    @GET("/api/nomenclature")
+    Observable<List<Nomenclature>> getNomenclatures();
 
 }

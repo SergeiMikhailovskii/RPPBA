@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bsuir.rppba.R;
+import com.bsuir.rppba.data.entity.Nomenclature;
 import com.bsuir.rppba.data.entity.Place;
 import com.bsuir.rppba.data.entity.RawMaterialsResponse;
 import com.bsuir.rppba.ui.manufacture.ManufactureFragment;
@@ -34,6 +35,7 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
     private int cellPosition;
 
     private List<RawMaterialsResponse> products = new ArrayList<>();
+    private List<Nomenclature> nomenclatures = new ArrayList<>();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -86,18 +88,19 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
         String type = getIntent().getStringExtra(ManufactureFragment.TYPE);
 
         if (Objects.requireNonNull(type).equals(ManufactureFragment.GET)) {
+            presenter.getNomenclatures();
             actionButton.setText("Get products");
-            actionButton.setOnClickListener(view -> {
-            });
+            cellsSpinner.setVisibility(View.INVISIBLE);
+            actionButton.setOnClickListener(view -> presenter.getProductsFromManufacture(Integer.parseInt(amountEt.getText().toString()), nomenclatures.get(productPosition).getId()));
         } else {
+            presenter.getAvailableProducts(Objects.requireNonNull(type));
             actionButton.setText("Send materials");
             actionButton.setOnClickListener(view -> presenter.sendMaterialsToManufacture(products.get(productPosition).getId(),
                     products.get(productPosition).getCell()[cellPosition].getId(),
                     Integer.parseInt(amountEt.getText().toString())
             ));
+            products.get(productPosition).getCell()[cellPosition].setActualSize(products.get(productPosition).getCell()[cellPosition].getActualSize() - Integer.parseInt(amountEt.getText().toString()));
         }
-
-        presenter.getAvailableProducts(Objects.requireNonNull(type));
 
     }
 
@@ -131,6 +134,26 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
     @Override
     public void onMaterialsFailed() {
         Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNomenclaturesLoaded(List<Nomenclature> nomenclatures) {
+        this.nomenclatures = nomenclatures;
+
+        List<String> nomenclatureNames = new ArrayList<>();
+
+        for (Nomenclature nomenclature : nomenclatures) {
+            nomenclatureNames.add(nomenclature.getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, nomenclatureNames);
+        productsSpinner.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onNomenclaturesFailed() {
+
     }
 
     @Override

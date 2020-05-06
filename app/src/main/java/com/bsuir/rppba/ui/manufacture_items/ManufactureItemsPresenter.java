@@ -37,12 +37,12 @@ public class ManufactureItemsPresenter extends BasePresenter<ManufactureItemsCon
                 }));
     }
 
-    void sendMaterialsToManufacture(int id, int cellId, int amount) {
+    public void sendMaterialsToManufacture(int id, int cellId, int amount) {
         SendMaterialsToManufactureBody body = new SendMaterialsToManufactureBody(cellId, amount);
         mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().sendMaterialsToManufacture(id, body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe());
+                .subscribe(() -> view.onMaterialsSent()));
     }
 
 }

@@ -14,11 +14,17 @@ public interface ManufactureItemsContract {
 
         void onProductsFailed();
 
+        void onMaterialsSent();
+
+        void onMaterialsFailed();
+
     }
 
     interface ManufactureItemsPresenter extends MvpPresenter<ManufactureItemsView> {
 
         void getAvailableProducts(String type);
+
+        void sendMaterialsToManufacture(int id, int cellId, int amount);
 
     }
 

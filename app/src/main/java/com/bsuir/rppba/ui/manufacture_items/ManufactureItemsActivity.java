@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +29,7 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
     private Spinner productsSpinner;
     private Button actionButton;
     private EditText amountEt;
+    private TextView maxAmountTv;
     private int productPosition;
     private int cellPosition;
 
@@ -42,6 +45,7 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
         productsSpinner = findViewById(R.id.products_spinner);
         actionButton = findViewById(R.id.action_btn);
         amountEt = findViewById(R.id.amount_et);
+        maxAmountTv = findViewById(R.id.max_amount_tv);
 
         productsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -66,6 +70,7 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 cellPosition = position;
+                maxAmountTv.setText("Max amount: " + products.get(productPosition).getCell()[cellPosition].getActualSize());
             }
 
             @Override
@@ -115,7 +120,17 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
 
     @Override
     public void onProductsFailed() {
+        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onMaterialsSent() {
+        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMaterialsFailed() {
+        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

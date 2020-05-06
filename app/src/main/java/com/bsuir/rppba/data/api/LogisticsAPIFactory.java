@@ -17,7 +17,7 @@ public class LogisticsAPIFactory {
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
     private static final String CONTENT_TYPE_VALUE = "application/json";
 
-    private static final String BASE_URL = "https://53fbdef4.ngrok.io";
+    private static final String BASE_URL = "https://908e6492.ngrok.io";
 
     private static LogisticsAPIFactory instance;
 

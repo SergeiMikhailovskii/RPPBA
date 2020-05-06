@@ -18,7 +18,7 @@ public interface LogisticsAPI {
 
     @GET("/api/product/products")
     @NonNull
-    Observable<List<RawMaterialsResponse>> getRawProducts();
+    Observable<List<RawMaterialsResponse>> getProducts();
 
     @GET("/api/waybill")
     @NonNull

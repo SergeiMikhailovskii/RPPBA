@@ -16,7 +16,7 @@ public class ProductPresenter extends BasePresenter<ProductContract.ProductView>
 
     @Override
     public void loadProductsList() {
-        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().getRawProducts()
+        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().getProducts()
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(it -> view.showLoadingIndicator(true))
                 .flatMapIterable(stockItems -> stockItems)

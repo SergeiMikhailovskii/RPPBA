@@ -19,20 +19,25 @@ public interface CreateBillContract {
 
         void onClientelesFailed();
 
+        void onProductsLoaded(List<StockItem> products);
+
+        void onProductsFailed();
+
     }
 
     interface CreateBillPresenter extends MvpPresenter<CreateBillView> {
 
         void saveWaybill(
                 String type,
-                String customer,
-                String waybillNumber,
+                int customer,
                 boolean isPassedFirstTest,
                 boolean isPassedSecondTest,
-                List<StockItem> stockItems
+                List<Integer> stockItems
         );
 
         void loadClienteles();
+
+        void getProducts();
 
     }
 

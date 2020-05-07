@@ -44,20 +44,6 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintTop_toBottomOf="@id/supply_selling_switch" />
 
-    <EditText
-        android:id="@+id/waybill_number_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/waybill_number"
-        android:inputType="text"
-        android:maxLines="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clienteles_spinner"
-        tools:ignore="Autofill,TextFields"
-        tools:layout_editor_absoluteY="120dp" />
-
     <CheckBox
         android:id="@+id/first_test_cb"
         android:layout_width="wrap_content"
@@ -66,7 +52,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/passed_first_test"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/waybill_number_et" />
+        app:layout_constraintTop_toBottomOf="@id/clienteles_spinner"
+        tools:layout_editor_absoluteY="160dp" />
 
     <CheckBox
         android:id="@+id/second_test_cb"

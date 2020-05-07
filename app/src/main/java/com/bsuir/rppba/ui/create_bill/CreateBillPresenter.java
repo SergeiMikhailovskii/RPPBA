@@ -1,11 +1,14 @@
 package com.bsuir.rppba.ui.create_bill;
 
-import android.util.Log;
+import android.annotation.SuppressLint;
 
 import com.bsuir.rppba.data.api.LogisticsAPIFactory;
+import com.bsuir.rppba.data.entity.CreateWaybillBody;
+import com.bsuir.rppba.data.entity.RawMaterialsResponse;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.BasePresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -13,26 +16,14 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CreateBillPresenter extends BasePresenter<CreateBillContract.CreateBillView> implements CreateBillContract.CreateBillPresenter {
 
+    @SuppressLint("NewApi")
     @Override
-    public void saveWaybill(String type, String customer, String waybillNumber, boolean isPassedFirstTest, boolean isPassedSecondTest, List<StockItem> stockItems) {
-        view.showLoadingIndicator(true);
-
-        for (int i = 0; i < stockItems.size(); i++) {
-            if (stockItems.get(i).getName() == null || stockItems.get(i).getAmount() == 0) {
-                stockItems.remove(i);
-                i--;
-            }
-        }
-
-        Log.i(getClass().getName(), "Type: " + type);
-        Log.i(getClass().getName(), "WaybillNumber: " + waybillNumber);
-        Log.i(getClass().getName(), "Is passed first test: " + isPassedFirstTest);
-        Log.i(getClass().getName(), "Is passed second test: " + isPassedSecondTest);
-        for (StockItem item : stockItems) {
-            Log.i(getClass().getName(), "Item: " + item.getName() + ", Amount: " + item.getAmount());
-        }
-        view.showLoadingIndicator(false);
-        view.onWaybillSaved();
+    public void saveWaybill(String type, int customer, boolean isPassedFirstTest, boolean isPassedSecondTest, List<Integer> stockItems) {
+        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().createWaybill(
+                new CreateWaybillBody(customer, stockItems.stream().mapToInt(i -> i).toArray(), isPassedFirstTest, isPassedSecondTest, type)
+        ).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> view.onWaybillSaved()));
     }
 
     @Override
@@ -42,5 +33,36 @@ public class CreateBillPresenter extends BasePresenter<CreateBillContract.Create
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(clienteles -> view.onClientelesLoaded(clienteles)));
     }
+
+    @Override
+    public void getProducts() {
+        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().getProducts()
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(it -> view.showLoadingIndicator(true))
+                .flatMapIterable(stockItems -> stockItems)
+                .map(this::getStockItem)
+                .toList()
+                .observeOn(AndroidSchedulers.mainThread())
+                .doAfterTerminate(() -> view.showLoadingIndicator(false))
+                .subscribe(list -> {
+                            view.showLoadingIndicator(false);
+                            if (!list.isEmpty()) {
+                                view.onProductsLoaded(list);
+                            } else {
+                                view.onProductsFailed();
+                            }
+                        }
+                ));
+    }
+
+    private StockItem getStockItem(RawMaterialsResponse rawMaterialsResponse) {
+        return new StockItem(rawMaterialsResponse.getImage(),
+                rawMaterialsResponse.getNomenclature().getName(),
+                rawMaterialsResponse.getNomenclature().getKindOfNomenclature(),
+                rawMaterialsResponse.getAmount(),
+                rawMaterialsResponse.getId(),
+                new ArrayList<>());
+    }
+
 
 }

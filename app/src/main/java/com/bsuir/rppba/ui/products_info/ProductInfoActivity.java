@@ -25,6 +25,7 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
     private ProductInfoAdapter adapter;
     private ImageView productIv;
 
+    private StockItem item;
 
     private int id;
 
@@ -56,8 +57,10 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
 
     @Override
     public void onItemClick(int position, Place place) {
-        BottomModal bottomModal = new BottomModal();
-        bottomModal.show(getSupportFragmentManager(), null);
+        if (item.getPlaces().get(position).getPlace().equals("Unsorted")) {
+            BottomModal bottomModal = BottomModal.getInstance(true, id);
+            bottomModal.show(getSupportFragmentManager(), null);
+        }
     }
 
 
@@ -70,6 +73,7 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
         if (item.getAmount() > 0) {
             item.getPlaces().add(new Place("Unsorted", item.getAmount(), 0));
         }
+        this.item = item;
         adapter.setData(item.getPlaces());
     }
 

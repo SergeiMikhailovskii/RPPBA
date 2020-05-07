@@ -14,11 +14,15 @@ public interface BottomModalContract {
 
         void onFreeCellsFailed();
 
+        void onUnsortedProductMoved();
+
     }
 
     interface BottomModalPresenter extends MvpPresenter<BottomModalView> {
 
         void getFreeCells();
+
+        void moveUnsortedProduct(int productId, int id, int amount);
 
     }
 

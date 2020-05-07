@@ -5,7 +5,7 @@ import com.bsuir.rppba.data.entity.RawMaterialsResponse;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.BasePresenter;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -31,7 +31,7 @@ public class ProductInfoPresenter extends BasePresenter<ProductInfoContract.Prod
                 rawMaterialsResponse.getNomenclature().getKindOfNomenclature(),
                 rawMaterialsResponse.getAmount(),
                 rawMaterialsResponse.getId(),
-                new ArrayList<>());
+                Arrays.asList(rawMaterialsResponse.getCell()));
     }
 
 }

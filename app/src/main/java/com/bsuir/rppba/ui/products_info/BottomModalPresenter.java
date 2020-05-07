@@ -1,6 +1,7 @@
 package com.bsuir.rppba.ui.products_info;
 
 import com.bsuir.rppba.data.api.LogisticsAPIFactory;
+import com.bsuir.rppba.data.entity.MoveUnsortedProductBody;
 import com.bsuir.rppba.ui.base.BasePresenter;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -14,6 +15,16 @@ public class BottomModalPresenter extends BasePresenter<BottomModalContract.Bott
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(cells -> view.onFreeCellsLoaded(cells)));
+    }
+
+    @Override
+    public void moveUnsortedProduct(int productId, int id, int amount) {
+        MoveUnsortedProductBody body = new MoveUnsortedProductBody(id, amount);
+        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().moveUnsortedProduct(productId, body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> view.onUnsortedProductMoved()));
+
     }
 
 }

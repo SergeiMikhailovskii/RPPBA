@@ -57,4 +57,8 @@ public interface LogisticsAPI {
     @NonNull
     Completable createWaybill(@Body CreateWaybillBody body);
 
+    @GET("/api/product/{id}")
+    @NonNull
+    Single<RawMaterialsResponse> getProduct(@Path("id") int id);
+
 }

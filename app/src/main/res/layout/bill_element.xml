@@ -44,7 +44,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/guideline7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/status_iv"
+        app:layout_constraintTop_toBottomOf="@id/supplier"
         tools:text="Created at: 16.03.2020 17:25" />
 
     <ImageView

@@ -1,6 +1,7 @@
 package com.bsuir.rppba.ui.bills;
 
 import com.bsuir.rppba.data.entity.Bill;
+import com.bsuir.rppba.data.entity.Clientele;
 import com.bsuir.rppba.ui.base.MvpPresenter;
 import com.bsuir.rppba.ui.base.MvpView;
 

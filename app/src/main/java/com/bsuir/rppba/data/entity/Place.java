@@ -1,9 +1,12 @@
 package com.bsuir.rppba.data.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Place extends Entity {
 
     private int id;
     private String place;
+    @SerializedName("actual_size")
     private int actualSize;
     private int size;
 

@@ -17,14 +17,16 @@ public class LogisticsAPIFactory {
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
     private static final String CONTENT_TYPE_VALUE = "application/json";
 
-    private static final String BASE_URL = "https://908e6492.ngrok.io";
+    private static final String BASE_URL = "https://94418878.ngrok.io";
 
     private static LogisticsAPIFactory instance;
 
     private Retrofit retrofit;
 
+    private OkHttpClient.Builder httpClient;
+
     private LogisticsAPIFactory() {
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+        httpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS);
@@ -62,6 +64,17 @@ public class LogisticsAPIFactory {
     @NonNull
     public LogisticsAPI getAPIService() {
         return retrofit.create(LogisticsAPI.class);
+    }
+
+    void setAuthHeader() {
+        AuthInterceptor interceptor = new AuthInterceptor();
+        httpClient.addInterceptor(interceptor);
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(httpClient.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
     }
 
 

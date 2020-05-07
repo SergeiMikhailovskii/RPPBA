@@ -35,8 +35,7 @@ public class MaterialPresenter extends BasePresenter<MaterialContract.MaterialsV
     }
 
     private StockItem getStockItem(RawMaterialsResponse rawMaterialsResponse) {
-        // TODO add icon
-        return new StockItem("",
+        return new StockItem(rawMaterialsResponse.getImage(),
                 rawMaterialsResponse.getNomenclature().getName(),
                 rawMaterialsResponse.getNomenclature().getKindOfNomenclature(),
                 rawMaterialsResponse.getAmount(),

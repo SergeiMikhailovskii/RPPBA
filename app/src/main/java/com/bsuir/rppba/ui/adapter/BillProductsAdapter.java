@@ -1,12 +1,11 @@
 package com.bsuir.rppba.ui.adapter;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,23 +20,31 @@ public class BillProductsAdapter extends RecyclerView.Adapter<BillProductsAdapte
 
     private List<StockItem> stockItems = new ArrayList<>();
 
+    private List<Integer> productsIds = new ArrayList<>();
+
+    private List<StockItem> viewItems = new ArrayList<>();
+
     public BillProductsAdapter() {
-        stockItems.add(new StockItem());
-        stockItems.add(new StockItem());
-        stockItems.add(new StockItem());
+        viewItems.add(new StockItem());
+        viewItems.add(new StockItem());
+        viewItems.add(new StockItem());
+    }
+
+    public void setData(List<StockItem> items) {
+        stockItems = items;
+    }
+
+    public List<Integer> getProductsIds() {
+        return productsIds;
     }
 
     public void addRow() {
-        stockItems.add(0, new StockItem());
+        viewItems.add(0, new StockItem());
         notifyDataSetChanged();
     }
 
-    public List<StockItem> getStockItems() {
-        return stockItems;
-    }
-
     public void deleteItem(int position) {
-        stockItems.remove(position);
+        viewItems.remove(position);
         notifyItemRemoved(position);
     }
 
@@ -50,46 +57,34 @@ public class BillProductsAdapter extends RecyclerView.Adapter<BillProductsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.i(getClass().getName(), String.valueOf(position));
-        holder.name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        List<String> itemNames = new ArrayList<>();
 
-            }
+        for (StockItem stockItem : stockItems) {
+            itemNames.add(stockItem.getName());
+        }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                stockItems.get(position).setName(s.toString());
-            }
+        if (!itemNames.isEmpty()) {
 
-            @Override
-            public void afterTextChanged(Editable s) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.itemView.getContext(), android.R.layout.simple_spinner_dropdown_item, itemNames);
+            holder.productSpinner.setAdapter(adapter);
+            holder.productSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    productsIds.add(stockItems.get(position).getId());
+                }
 
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-        holder.amount.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                stockItems.get(position).setAmount(Integer.parseInt(s.toString()));
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+                }
+            });
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return stockItems.size();
+        return viewItems.size();
     }
 
     @Override
@@ -104,14 +99,12 @@ public class BillProductsAdapter extends RecyclerView.Adapter<BillProductsAdapte
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        EditText name;
-        EditText amount;
+        Spinner productSpinner;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.name_et);
-            amount = itemView.findViewById(R.id.amount_et);
+            productSpinner = itemView.findViewById(R.id.name_spinner);
 
         }
 

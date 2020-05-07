@@ -9,6 +9,7 @@ public class RawMaterialsResponse {
     private int amount;
     private double price;
     private Nomenclature nomenclature;
+    private String image;
 
     @SerializedName("date_of_manufacture")
     private String dateOfManufacture;
@@ -27,6 +28,10 @@ public class RawMaterialsResponse {
     }
 
     public RawMaterialsResponse() {
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public int getId() {

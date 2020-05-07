@@ -35,33 +35,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/supplier_customer_et"
+    <Spinner
+        android:id="@+id/clienteles_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/supplier_customer"
-        android:inputType="text"
-        android:maxLines="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/supply_selling_switch"
-        tools:ignore="Autofill" />
-
-    <EditText
-        android:id="@+id/waybill_number_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/waybill_number"
-        android:inputType="text"
-        android:maxLines="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/supplier_customer_et"
-        tools:ignore="Autofill,TextFields" />
+        app:layout_constraintTop_toBottomOf="@id/supply_selling_switch" />
 
     <CheckBox
         android:id="@+id/first_test_cb"
@@ -71,7 +52,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/passed_first_test"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/waybill_number_et" />
+        app:layout_constraintTop_toBottomOf="@id/clienteles_spinner"
+        tools:layout_editor_absoluteY="160dp" />
 
     <CheckBox
         android:id="@+id/second_test_cb"

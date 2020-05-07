@@ -41,14 +41,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onLoginSuccess() {
-        Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     @Override
     public void onLoginFail() {
-
+        Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

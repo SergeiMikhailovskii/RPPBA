@@ -8,6 +8,7 @@ import com.bsuir.rppba.data.entity.GetProductsFromManufactureBody;
 import com.bsuir.rppba.data.entity.LoginUserBody;
 import com.bsuir.rppba.data.entity.LoginUserResponse;
 import com.bsuir.rppba.data.entity.Nomenclature;
+import com.bsuir.rppba.data.entity.Place;
 import com.bsuir.rppba.data.entity.RawMaterialsResponse;
 import com.bsuir.rppba.data.entity.SendMaterialsToManufactureBody;
 import com.bsuir.rppba.data.entity.WaybillResponse;
@@ -60,5 +61,9 @@ public interface LogisticsAPI {
     @GET("/api/product/{id}")
     @NonNull
     Single<RawMaterialsResponse> getProduct(@Path("id") int id);
+
+    @GET("/api/cells/empty-cells")
+    @NonNull
+    Observable<List<Place>> getEmptyCells();
 
 }

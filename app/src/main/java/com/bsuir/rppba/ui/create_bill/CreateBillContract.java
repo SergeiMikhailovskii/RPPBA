@@ -1,5 +1,6 @@
 package com.bsuir.rppba.ui.create_bill;
 
+import com.bsuir.rppba.data.entity.Clientele;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.MvpPresenter;
 import com.bsuir.rppba.ui.base.MvpView;
@@ -14,6 +15,10 @@ public interface CreateBillContract {
 
         void onWaybillFailed();
 
+        void onClientelesLoaded(List<Clientele> clienteles);
+
+        void onClientelesFailed();
+
     }
 
     interface CreateBillPresenter extends MvpPresenter<CreateBillView> {
@@ -26,6 +31,8 @@ public interface CreateBillContract {
                 boolean isPassedSecondTest,
                 List<StockItem> stockItems
         );
+
+        void loadClienteles();
 
     }
 

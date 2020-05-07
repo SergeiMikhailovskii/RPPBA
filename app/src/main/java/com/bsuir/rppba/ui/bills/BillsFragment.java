@@ -44,6 +44,8 @@ public class BillsFragment extends Fragment implements BillsContract.BillsView, 
 
         swipeRefreshLayout.setOnRefreshListener(() -> presenter.loadBills());
 
+        addBillFab.setOnClickListener((view1) -> startActivity(new Intent(getContext(), CreateBillActivity.class)));
+
         adapter = new BillsAdapter(this);
         billsList.setAdapter(adapter);
 
@@ -61,6 +63,7 @@ public class BillsFragment extends Fragment implements BillsContract.BillsView, 
     public void onBillsFailed() {
         Toast.makeText(getContext(), "Loading failed", Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     public void showEmptyState(boolean value) {

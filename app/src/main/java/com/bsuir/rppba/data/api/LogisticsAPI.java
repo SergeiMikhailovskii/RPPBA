@@ -2,6 +2,7 @@ package com.bsuir.rppba.data.api;
 
 import androidx.annotation.NonNull;
 
+import com.bsuir.rppba.data.entity.Clientele;
 import com.bsuir.rppba.data.entity.GetProductsFromManufactureBody;
 import com.bsuir.rppba.data.entity.LoginUserBody;
 import com.bsuir.rppba.data.entity.LoginUserResponse;
@@ -46,5 +47,9 @@ public interface LogisticsAPI {
     @POST("/api/user/login")
     @NonNull
     Single<LoginUserResponse> loginUser(@Body LoginUserBody body);
+
+    @GET("/api/clientele")
+    @NonNull
+    Observable<List<Clientele>> getAllClienteles();
 
 }

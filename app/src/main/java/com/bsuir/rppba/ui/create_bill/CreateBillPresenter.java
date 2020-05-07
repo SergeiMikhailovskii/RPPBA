@@ -2,10 +2,14 @@ package com.bsuir.rppba.ui.create_bill;
 
 import android.util.Log;
 
+import com.bsuir.rppba.data.api.LogisticsAPIFactory;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.base.BasePresenter;
 
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class CreateBillPresenter extends BasePresenter<CreateBillContract.CreateBillView> implements CreateBillContract.CreateBillPresenter {
 
@@ -29,6 +33,14 @@ public class CreateBillPresenter extends BasePresenter<CreateBillContract.Create
         }
         view.showLoadingIndicator(false);
         view.onWaybillSaved();
+    }
+
+    @Override
+    public void loadClienteles() {
+        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().getAllClienteles()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(clienteles -> view.onClientelesLoaded(clienteles)));
     }
 
 }

@@ -31,7 +31,7 @@ public class BillProductsAdapter extends RecyclerView.Adapter<BillProductsAdapte
     }
 
     public void setData(List<StockItem> items) {
-
+        stockItems = items;
     }
 
     public List<Integer> getProductsIds() {

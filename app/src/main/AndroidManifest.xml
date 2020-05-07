@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.productsinfo.ProductInfoActivity" />
+        <activity android:name=".ui.products_info.ProductInfoActivity" />
     </application>
 
 </manifest>

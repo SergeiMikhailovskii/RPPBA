@@ -1,8 +1,7 @@
-package com.bsuir.rppba.ui.productsinfo;
+package com.bsuir.rppba.ui.products_info;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +15,6 @@ import com.bsuir.rppba.data.entity.Place;
 import com.bsuir.rppba.ui.adapter.ProductInfoAdapter;
 
 import java.util.List;
-import java.util.Objects;
 
 public class ProductInfoActivity extends AppCompatActivity implements ProductInfoContract.ProductInfoView, ProductInfoAdapter.OnItemClickListener {
 

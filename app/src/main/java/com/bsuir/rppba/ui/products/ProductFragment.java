@@ -1,6 +1,5 @@
 package com.bsuir.rppba.ui.products;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,9 +10,7 @@ import android.widget.Toast;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.adapter.StockAdapter;
-import com.bsuir.rppba.ui.manufacture.ManufactureFragment;
-import com.bsuir.rppba.ui.materials.MaterialFragment;
-import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
+import com.bsuir.rppba.ui.products_info.ProductInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +31,7 @@ public class ProductFragment extends Fragment implements ProductContract.Product
     private RecyclerView products;
     private StockAdapter adapter;
     private List<StockItem> stockItems = new ArrayList<>();
-    ;
+
 
     @Nullable
     @Override

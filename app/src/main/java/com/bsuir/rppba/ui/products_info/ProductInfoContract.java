@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.productsinfo;
+package com.bsuir.rppba.ui.products_info;
 
 import com.bsuir.rppba.data.entity.Place;
 import com.bsuir.rppba.ui.base.MvpPresenter;

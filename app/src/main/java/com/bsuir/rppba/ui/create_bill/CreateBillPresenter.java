@@ -55,6 +55,29 @@ public class CreateBillPresenter extends BasePresenter<CreateBillContract.Create
                 ));
     }
 
+    @Override
+    public void getMaterials() {
+        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().getRawMaterials()
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(it -> view.showLoadingIndicator(true))
+                .flatMapIterable(stockItems -> stockItems)
+                .map(this::getStockItem)
+                .toList()
+                .observeOn(AndroidSchedulers.mainThread())
+                .doAfterTerminate(() -> view.showLoadingIndicator(false))
+                .subscribe(list -> {
+                            view.showLoadingIndicator(false);
+                            if (!list.isEmpty()) {
+                                view.onProductsLoaded(list);
+                            } else {
+                                view.onProductsFailed();
+                            }
+                        }
+                ));
+
+    }
+
+
     private StockItem getStockItem(RawMaterialsResponse rawMaterialsResponse) {
         return new StockItem(rawMaterialsResponse.getImage(),
                 rawMaterialsResponse.getNomenclature().getName(),

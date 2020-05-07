@@ -99,7 +99,9 @@ public class ManufactureItemsActivity extends AppCompatActivity implements Manuf
                     products.get(productPosition).getCell()[cellPosition].getId(),
                     Integer.parseInt(amountEt.getText().toString())
             ));
-            products.get(productPosition).getCell()[cellPosition].setActualSize(products.get(productPosition).getCell()[cellPosition].getActualSize() - Integer.parseInt(amountEt.getText().toString()));
+            if (!products.isEmpty()) {
+                products.get(productPosition).getCell()[cellPosition].setActualSize(products.get(productPosition).getCell()[cellPosition].getActualSize() - Integer.parseInt(amountEt.getText().toString()));
+            }
         }
 
     }

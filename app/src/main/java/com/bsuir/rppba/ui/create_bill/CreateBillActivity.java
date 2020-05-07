@@ -63,6 +63,15 @@ public class CreateBillActivity extends AppCompatActivity implements CreateBillC
         Objects.requireNonNull(getSupportActionBar()).setTitle(toolbarTitle);
 
         supplySellingSwitch = findViewById(R.id.supply_selling_switch);
+
+        supplySellingSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                presenter.getMaterials();
+            } else {
+                presenter.getProducts();
+            }
+        });
+
         firstTestCb = findViewById(R.id.first_test_cb);
         secondTestCb = findViewById(R.id.second_test_cb);
         productsList = findViewById(R.id.products_list);

@@ -39,6 +39,8 @@ public interface CreateBillContract {
 
         void getProducts();
 
+        void getMaterials();
+
     }
 
 }

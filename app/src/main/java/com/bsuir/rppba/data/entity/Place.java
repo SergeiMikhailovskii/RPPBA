@@ -2,20 +2,21 @@ package com.bsuir.rppba.data.entity;
 
 public class Place extends Entity {
 
+    private int id;
     private String place;
-    private int amount;
-    private int maxLimit;
+    private int actualSize;
+    private int size;
 
     public Place() {
         this.place = "";
-        this.amount = 0;
-        this.maxLimit = 0;
+        this.actualSize = 0;
+        this.size = 0;
     }
 
-    public Place(String place, int amount, int maxLimit) {
+    public Place(String place, int actualSize, int size) {
         this.place = place;
-        this.amount = amount;
-        this.maxLimit = maxLimit;
+        this.actualSize = actualSize;
+        this.size = size;
     }
 
     public String getPlace() {
@@ -26,19 +27,28 @@ public class Place extends Entity {
         this.place = place;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getActualSize() {
+        return actualSize;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setActualSize(int actualSize) {
+        this.actualSize = actualSize;
     }
 
-    public int getMaxLimit() {
-        return maxLimit;
+    public int getSize() {
+        return size;
     }
 
-    public void setMaxLimit(int maxLimit) {
-        this.maxLimit = maxLimit;
+    public void setSize(int size) {
+        this.size = size;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

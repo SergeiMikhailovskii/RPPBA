@@ -20,4 +20,8 @@ public interface LogisticsAPI {
     @NonNull
     Observable<List<WaybillResponse>> getWaybills();
 
+    @GET("/api/product/products")
+    @NonNull
+    Observable<List<RawMaterialsResponse>> getProducts();
+
 }

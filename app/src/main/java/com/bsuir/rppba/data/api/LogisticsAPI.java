@@ -3,6 +3,8 @@ package com.bsuir.rppba.data.api;
 import androidx.annotation.NonNull;
 
 import com.bsuir.rppba.data.entity.GetProductsFromManufactureBody;
+import com.bsuir.rppba.data.entity.LoginUserBody;
+import com.bsuir.rppba.data.entity.LoginUserResponse;
 import com.bsuir.rppba.data.entity.Nomenclature;
 import com.bsuir.rppba.data.entity.RawMaterialsResponse;
 import com.bsuir.rppba.data.entity.SendMaterialsToManufactureBody;
@@ -12,6 +14,7 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -39,5 +42,9 @@ public interface LogisticsAPI {
 
     @GET("/api/nomenclature")
     Observable<List<Nomenclature>> getNomenclatures();
+
+    @POST("/api/user/login")
+    @NonNull
+    Single<LoginUserResponse> loginUser(@Body LoginUserBody body);
 
 }

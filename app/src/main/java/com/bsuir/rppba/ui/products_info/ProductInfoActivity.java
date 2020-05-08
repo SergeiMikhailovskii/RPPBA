@@ -17,6 +17,8 @@ import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.adapter.ProductInfoAdapter;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+
 public class ProductInfoActivity extends AppCompatActivity implements ProductInfoContract.ProductInfoView, ProductInfoAdapter.OnItemClickListener {
 
     private ProductInfoPresenter productInfoPresenter = new ProductInfoPresenter();
@@ -71,6 +73,9 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
         }
         Glide.with(getApplicationContext()).load(item.getIcon()).into(productIv);
         if (item.getAmount() > 0) {
+            if (item.getPlaces() == null) {
+                item.setPlaces(new ArrayList<>());
+            }
             item.getPlaces().add(new Place("Unsorted", item.getAmount(), 0));
         }
         this.item = item;

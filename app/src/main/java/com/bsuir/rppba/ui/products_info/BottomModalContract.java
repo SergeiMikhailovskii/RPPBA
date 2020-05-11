@@ -24,6 +24,8 @@ public interface BottomModalContract {
 
         void moveUnsortedProduct(int productId, int id, int amount);
 
+        void moveSortedProduct(int productId, int cellFrom, int cellTo, int amount);
+
     }
 
 }

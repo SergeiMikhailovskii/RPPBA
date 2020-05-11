@@ -7,6 +7,7 @@ import com.bsuir.rppba.data.entity.CreateWaybillBody;
 import com.bsuir.rppba.data.entity.GetProductsFromManufactureBody;
 import com.bsuir.rppba.data.entity.LoginUserBody;
 import com.bsuir.rppba.data.entity.LoginUserResponse;
+import com.bsuir.rppba.data.entity.MoveSortedProductBody;
 import com.bsuir.rppba.data.entity.MoveUnsortedProductBody;
 import com.bsuir.rppba.data.entity.Nomenclature;
 import com.bsuir.rppba.data.entity.Place;
@@ -69,5 +70,8 @@ public interface LogisticsAPI {
 
     @POST("/api/product/{id}/move-unsorted-product")
     Completable moveUnsortedProduct(@Path("id") int id, @Body MoveUnsortedProductBody body);
+
+    @POST("/api/product/{id}/move-sorted-product")
+    Completable moveSortedProduct(@Path("id") int id, @Body MoveSortedProductBody body);
 
 }

@@ -60,7 +60,10 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
     @Override
     public void onItemClick(int position, Place place) {
         if (item.getPlaces().get(position).getPlace().equals("Unsorted")) {
-            BottomModal bottomModal = BottomModal.getInstance(true, id);
+            BottomModal bottomModal = BottomModal.getInstance(true, id, 0);
+            bottomModal.show(getSupportFragmentManager(), null);
+        } else {
+            BottomModal bottomModal = BottomModal.getInstance(false, id, place.getId());
             bottomModal.show(getSupportFragmentManager(), null);
         }
     }

@@ -31,6 +31,8 @@ public class BottomModal extends BottomSheetDialogFragment implements BottomModa
     private int cellId;
     private int productId;
 
+    private int newCellId;
+
     private boolean isUnsorted = false;
 
     private BottomModalPresenter presenter = new BottomModalPresenter();
@@ -38,11 +40,14 @@ public class BottomModal extends BottomSheetDialogFragment implements BottomModa
     public BottomModal() {
     }
 
-    public static BottomModal getInstance(boolean isUnsorted, int productId) {
+    public static BottomModal getInstance(boolean isUnsorted, int productId, int newCellId) {
         BottomModal modal = new BottomModal();
         Bundle args = new Bundle();
         args.putBoolean("isUnsorted", isUnsorted);
         args.putInt("productId", productId);
+        if (!isUnsorted) {
+            args.putInt("cellId", newCellId);
+        }
         modal.setArguments(args);
         return modal;
     }
@@ -54,12 +59,15 @@ public class BottomModal extends BottomSheetDialogFragment implements BottomModa
         presenter.attachView(this);
         isUnsorted = Objects.requireNonNull(getArguments()).getBoolean("isUnsorted");
         productId = Objects.requireNonNull(getArguments()).getInt("productId");
+        newCellId = Objects.requireNonNull(getArguments()).getInt("cellId");
         moveBtn = view.findViewById(R.id.move_btn);
         amountEt = view.findViewById(R.id.amount_et);
 
         moveBtn.setOnClickListener(btn -> {
             if (isUnsorted) {
                 presenter.moveUnsortedProduct(productId, cellId, Integer.parseInt(amountEt.getText().toString()));
+            } else {
+                presenter.moveSortedProduct(productId, newCellId, cellId, Integer.parseInt(amountEt.getText().toString()));
             }
         });
 

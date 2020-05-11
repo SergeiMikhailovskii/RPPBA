@@ -76,6 +76,9 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
             if (item.getPlaces() == null) {
                 item.setPlaces(new ArrayList<>());
             }
+            for (int i = 0; i < item.getPlaces().size(); i++) {
+                item.getPlaces().get(i).setPlace("Place" + item.getPlaces().get(i).getId());
+            }
             item.getPlaces().add(new Place("Unsorted", item.getAmount(), 0));
         }
         this.item = item;

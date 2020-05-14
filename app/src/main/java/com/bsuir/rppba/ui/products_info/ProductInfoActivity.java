@@ -75,15 +75,13 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
             item.setIcon("https://pngimage.net/wp-content/uploads/2018/06/vector-pen-png.png");
         }
         Glide.with(getApplicationContext()).load(item.getIcon()).into(productIv);
-        if (item.getAmount() > 0) {
-            if (item.getPlaces() == null) {
-                item.setPlaces(new ArrayList<>());
-            }
-            for (int i = 0; i < item.getPlaces().size(); i++) {
-                item.getPlaces().get(i).setPlace("Place" + item.getPlaces().get(i).getId());
-            }
-            item.getPlaces().add(new Place("Unsorted", item.getAmount(), 0));
+        if (item.getPlaces() == null) {
+            item.setPlaces(new ArrayList<>());
         }
+        for (int i = 0; i < item.getPlaces().size(); i++) {
+            item.getPlaces().get(i).setPlace("Place" + item.getPlaces().get(i).getId());
+        }
+
         this.item = item;
         adapter.setData(item.getPlaces());
     }

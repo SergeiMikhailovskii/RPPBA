@@ -71,7 +71,7 @@ public interface LogisticsAPI {
     @POST("/api/product/{id}/move-unsorted-product")
     Completable moveUnsortedProduct(@Path("id") int id, @Body MoveUnsortedProductBody body);
 
-    @POST("/api/product/{id}/move-sorted-product")
+    @POST("/api/product/{id}/move-product")
     Completable moveSortedProduct(@Path("id") int id, @Body MoveSortedProductBody body);
 
 }

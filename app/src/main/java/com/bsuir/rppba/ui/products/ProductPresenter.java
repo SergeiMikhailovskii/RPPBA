@@ -7,6 +7,7 @@ import com.bsuir.rppba.ui.base.BasePresenter;
 import com.bsuir.rppba.ui.products.ProductContract;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -27,7 +28,8 @@ public class ProductPresenter extends BasePresenter<ProductContract.ProductView>
                 .subscribe(list -> {
                             view.showLoadingIndicator(false);
                             if (!list.isEmpty()) {
-                                view.onProductsLoaded(list);;
+                                view.onProductsLoaded(list);
+                                ;
                             } else {
                                 view.onProductsFailed();
                             }
@@ -35,6 +37,7 @@ public class ProductPresenter extends BasePresenter<ProductContract.ProductView>
                 )
         );
     }
+
     private StockItem getStockItem(RawMaterialsResponse rawMaterialsResponse) {
         // TODO add icon
         return new StockItem("",
@@ -42,7 +45,7 @@ public class ProductPresenter extends BasePresenter<ProductContract.ProductView>
                 rawMaterialsResponse.getNomenclature().getKindOfNomenclature(),
                 rawMaterialsResponse.getAmount(),
                 rawMaterialsResponse.getId(),
-                new ArrayList<>());
+                new ArrayList<>(Arrays.asList(rawMaterialsResponse.getCell())));
     }
 
 }

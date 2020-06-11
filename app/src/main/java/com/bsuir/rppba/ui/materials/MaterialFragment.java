@@ -1,6 +1,5 @@
 package com.bsuir.rppba.ui.materials;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,8 +17,7 @@ import android.widget.Toast;
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.adapter.StockAdapter;
-import com.bsuir.rppba.ui.login.LoginActivity;
-import com.bsuir.rppba.ui.productsinfo.ProductInfoActivity;
+import com.bsuir.rppba.ui.products_info.ProductInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,7 @@ public class MaterialFragment extends Fragment implements MaterialContract.Mater
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView materials;
     private StockAdapter adapter;
-    List<StockItem> stockItems = new ArrayList<>();
+    private List<StockItem> stockItems = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

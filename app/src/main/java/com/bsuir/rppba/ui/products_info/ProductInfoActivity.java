@@ -1,8 +1,8 @@
-package com.bsuir.rppba.ui.productsinfo;
+package com.bsuir.rppba.ui.products_info;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,10 +13,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bsuir.rppba.R;
 import com.bsuir.rppba.data.entity.Place;
+import com.bsuir.rppba.data.entity.StockItem;
 import com.bsuir.rppba.ui.adapter.ProductInfoAdapter;
+import com.bumptech.glide.Glide;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.ArrayList;
 
 public class ProductInfoActivity extends AppCompatActivity implements ProductInfoContract.ProductInfoView, ProductInfoAdapter.OnItemClickListener {
 
@@ -24,6 +25,10 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView productInfoRecyclerView;
     private ProductInfoAdapter adapter;
+    private ImageView productIv;
+
+    private StockItem item;
+
     private int id;
 
     @Override
@@ -39,28 +44,46 @@ public class ProductInfoActivity extends AppCompatActivity implements ProductInf
         productInfoPresenter.attachView(this);
 
         swipeRefreshLayout = findViewById(R.id.swipe_refresh);
-        swipeRefreshLayout.setOnRefreshListener(() -> productInfoPresenter.loadProductInfoList());
+        swipeRefreshLayout.setOnRefreshListener(() -> productInfoPresenter.loadProductInfoList(id));
+        productIv = findViewById(R.id.productImage);
 
         productInfoRecyclerView = findViewById(R.id.productInfo_list);
         productInfoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         productInfoRecyclerView.addItemDecoration(new DividerItemDecoration(this, (DividerItemDecoration.VERTICAL)));
         adapter = new ProductInfoAdapter(this);
         productInfoRecyclerView.setAdapter(adapter);
-        productInfoPresenter.loadProductInfoList();
+        productInfoPresenter.loadProductInfoList(id);
 
 
     }
 
     @Override
     public void onItemClick(int position, Place place) {
-        //TODO replace with Intent
-        Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show();
+        if (item.getPlaces().get(position).getPlace().equals("Unsorted")) {
+            BottomModal bottomModal = BottomModal.getInstance(true, id, 0);
+            bottomModal.show(getSupportFragmentManager(), null);
+        } else {
+            BottomModal bottomModal = BottomModal.getInstance(false, id, place.getId());
+            bottomModal.show(getSupportFragmentManager(), null);
+        }
     }
 
 
     @Override
-    public void onProductInfoLoaded(List<Place> places) {
-        adapter.setData(places);
+    public void onProductInfoLoaded(StockItem item) {
+        if (item.getIcon() != null) {
+            item.setIcon("https://pngimage.net/wp-content/uploads/2018/06/vector-pen-png.png");
+        }
+        Glide.with(getApplicationContext()).load(item.getIcon()).into(productIv);
+        if (item.getPlaces() == null) {
+            item.setPlaces(new ArrayList<>());
+        }
+        for (int i = 0; i < item.getPlaces().size(); i++) {
+            item.getPlaces().get(i).setPlace("Place" + item.getPlaces().get(i).getId());
+        }
+
+        this.item = item;
+        adapter.setData(item.getPlaces());
     }
 
     @Override

@@ -42,7 +42,11 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         StockItem stockItem = stockItems.get(position);
-        holder.amount.setText(stockItem.getAmount() + "");
+        int amount = 0;
+        for (int i = 0; i < stockItem.getPlaces().size(); i++) {
+            amount += stockItem.getPlaces().get(i).getActualSize();
+        }
+        holder.amount.setText(amount + "");
         holder.subName.setText(stockItem.getSubName());
         holder.name.setText(stockItem.getName());
         Glide.with(LogisticsApp.getAppContext()).load(stockItem.getIcon()).into(holder.icon);

@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        android:usesCleartextTraffic="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        tools:targetApi="m">
         <activity android:name=".ui.manufacture_items.ManufactureItemsActivity" />
         <activity
             android:name=".ui.create_bill.CreateBillActivity"
@@ -30,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.productsinfo.ProductInfoActivity" />
+        <activity android:name=".ui.products_info.ProductInfoActivity" />
     </application>
 
 </manifest>

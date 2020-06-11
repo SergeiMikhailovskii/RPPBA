@@ -7,7 +7,10 @@ import com.bsuir.rppba.data.entity.CreateWaybillBody;
 import com.bsuir.rppba.data.entity.GetProductsFromManufactureBody;
 import com.bsuir.rppba.data.entity.LoginUserBody;
 import com.bsuir.rppba.data.entity.LoginUserResponse;
+import com.bsuir.rppba.data.entity.MoveSortedProductBody;
+import com.bsuir.rppba.data.entity.MoveUnsortedProductBody;
 import com.bsuir.rppba.data.entity.Nomenclature;
+import com.bsuir.rppba.data.entity.Place;
 import com.bsuir.rppba.data.entity.RawMaterialsResponse;
 import com.bsuir.rppba.data.entity.SendMaterialsToManufactureBody;
 import com.bsuir.rppba.data.entity.WaybillResponse;
@@ -56,5 +59,19 @@ public interface LogisticsAPI {
     @POST("/api/waybill/create-waybill")
     @NonNull
     Completable createWaybill(@Body CreateWaybillBody body);
+
+    @GET("/api/product/{id}")
+    @NonNull
+    Single<RawMaterialsResponse> getProduct(@Path("id") int id);
+
+    @GET("/api/cells/empty-cells")
+    @NonNull
+    Observable<List<Place>> getEmptyCells();
+
+    @POST("/api/product/{id}/move-unsorted-product")
+    Completable moveUnsortedProduct(@Path("id") int id, @Body MoveUnsortedProductBody body);
+
+    @POST("/api/product/{id}/move-product")
+    Completable moveSortedProduct(@Path("id") int id, @Body MoveSortedProductBody body);
 
 }

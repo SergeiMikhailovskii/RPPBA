@@ -1,4 +1,4 @@
-package com.bsuir.rppba.ui.materials;
+package com.bsuir.rppba.ui.products_info;
 
 import com.bsuir.rppba.data.api.LogisticsAPIFactory;
 import com.bsuir.rppba.data.entity.RawMaterialsResponse;
@@ -11,28 +11,19 @@ import java.util.Arrays;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MaterialPresenter extends BasePresenter<MaterialContract.MaterialsView> implements MaterialContract.MaterialsPresenter {
+public class ProductInfoPresenter extends BasePresenter<ProductInfoContract.ProductInfoView> implements ProductInfoContract.ProductsInfoPresenters {
 
     @Override
-    public void loadMaterialsList() {
-        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().getRawMaterials()
+    public void loadProductInfoList(int id) {
+        mCompositeDisposable.add(LogisticsAPIFactory.getInstance().getAPIService().getProduct(id)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(it -> view.showLoadingIndicator(true))
-                .flatMapIterable(stockItems -> stockItems)
                 .map(this::getStockItem)
-                .toList()
                 .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate(() -> view.showLoadingIndicator(false))
-                .subscribe(list -> {
-                            view.showLoadingIndicator(false);
-                            if (!list.isEmpty()) {
-                                view.onMaterialsLoaded(list);
-                            } else {
-                                view.onMaterialsFailed();
-                            }
-                        }
-                )
-        );
+                .subscribe(product -> {
+                    view.showLoadingIndicator(false);
+                    view.onProductInfoLoaded(product);
+                }));
     }
 
     private StockItem getStockItem(RawMaterialsResponse rawMaterialsResponse) {

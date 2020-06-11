@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.productsinfo.ProductInfoActivity">
+    tools:context=".ui.products_info.ProductInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:cropToPadding="true"
-            android:src="@drawable/pen"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/guideline12"
             app:layout_constraintStart_toEndOf="@id/guideline11"
